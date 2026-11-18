@@ -1,0 +1,183 @@
+.live-workshop {
+  --ws-ink: #203b32;
+  --ws-line: #bac9b9;
+  --ws-paper: #fffdf4;
+  --ws-a: #e5ebce;
+  --ws-b: #f3e1c9;
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(24px, 4vw, 52px);
+  color: var(--ws-ink);
+  scroll-margin-top: 6rem;
+}
+
+.workshop-header, .workshop-header > div, .workshop-projector-bar, .workshop-projector-bar > span,
+.workshop-controls, .workshop-actions, .workshop-round, .workshop-vote, .workshop-outcome-label {
+  display: flex;
+  align-items: center;
+}
+.workshop-header, .workshop-projector-bar { justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.workshop-header { margin-bottom: 15px; }
+.workshop-header > div, .workshop-projector-bar > span { gap: 10px; }
+.live-workshop .workshop-header h3 { margin: 0; font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 740; letter-spacing: -.035em; }
+
+.live-workshop :is(.workshop-primary, .workshop-secondary, .workshop-restart) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 44px;
+  width: fit-content;
+  border-radius: 9px;
+  padding: 10px 15px;
+  text-align: start;
+  font: 680 .92rem/1.3 'Manrope Variable', Manrope, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+.live-workshop .workshop-primary { background: #204d3b; border: 1px solid #204d3b; color: #fffdf0; }
+.live-workshop .workshop-primary:hover:not(:disabled) { background: #163b2e; }
+.live-workshop .workshop-primary:disabled { background: #e0e5d7; border-color: #d5ddcd; color: #626c62; opacity: 1; cursor: default; }
+.live-workshop .workshop-secondary { background: transparent; border: 1px solid #a7b7a6; color: #284b39; }
+.live-workshop .workshop-secondary:hover { background: #e7ecdd; }
+.live-workshop .workshop-restart { padding-inline: 5px; color: #405947; background: transparent; border: none; font-size: .82rem; }
+.live-workshop .workshop-restart:hover { text-decoration: underline; text-underline-offset: .2em; }
+.live-workshop :is(button,a):focus-visible { outline: 3px solid #096c8a; outline-offset: 3px; }
+.live-workshop button svg, .live-workshop a svg { flex-shrink: 0; }
+
+.workshop-bookend, .workshop-board {
+  border: 1px solid var(--ws-line);
+  border-radius: 14px;
+  background: var(--ws-paper);
+}
+.workshop-bookend { display: grid; grid-template-columns: minmax(200px,.8fr) minmax(0,1.2fr); overflow: hidden; }
+.workshop-print {
+  display: grid;
+  place-items: center;
+  background-color: #254638;
+  background-image: radial-gradient(#42644c 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+.workshop-ballots { display: block; width: min(95%, 380px); height: auto; }
+.workshop-bookend-copy { align-self: center; padding: clamp(24px, 3.8vw, 49px); }
+.live-workshop .workshop-bookend h4, .live-workshop .workshop-scene h4 {
+  max-width: 25ch;
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 730;
+  line-height: 1.12;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.live-workshop .workshop-bookend p, .live-workshop .workshop-context {
+  max-width: 66ch;
+  margin: .7rem 0 1.15rem;
+  color: #415447;
+  line-height: 1.55;
+}
+.workshop-bookend .workshop-restart { display: flex; margin-top: 5px; }
+.workshop-board { padding: clamp(20px, 3.75vw, 49px); }
+.workshop-round { flex-wrap: wrap; gap: 4px 13px; margin-bottom: 15px; font-size: .83rem; font-weight: 620; }
+.workshop-round span:first-child { color: #226045; font-weight: 800; font-variant-numeric: tabular-nums; }
+.workshop-round span + span { color: #526155; }
+.workshop-round span + span::before { content: '·'; padding-right: 13px; }
+.workshop-choices, .workshop-results[data-compare="true"] { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.workshop-choices, .workshop-results { margin-top: clamp(18px, 2.4vw, 28px); }
+.live-workshop .workshop-option {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+  padding: 17px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  text-align: start;
+  font: 680 1rem/1.46 'Manrope Variable',Manrope,sans-serif;
+  color: #253a2d;
+}
+.workshop-option[data-route="a"], .workshop-outcome[data-route="a"] { background: var(--ws-a); }
+.workshop-option[data-route="b"], .workshop-outcome[data-route="b"] { background: var(--ws-b); }
+.live-workshop .workshop-option b, .workshop-outcome-label b {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid currentColor;
+  line-height: 1;
+  font-size: .85rem;
+}
+.live-workshop button.workshop-option { align-items: start; cursor: pointer; }
+.live-workshop button.workshop-option:hover { border-color: #7a8d76; }
+.live-workshop .workshop-option[aria-pressed="true"] { border-color: #31563b; }
+.workshop-option[aria-pressed="true"] b { background: #31563b; color: #fff9e5; }
+.workshop-selected { align-self: start; margin-left: auto; }
+.live-workshop .workshop-vote {
+  align-items: flex-start;
+  gap: 10px;
+  margin: 17px 0 0;
+  font-weight: 640;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+.workshop-vote svg { flex: none; margin-top: 2px; }
+.workshop-outcome { padding: clamp(17px, 2.7vw, 29px); border-radius: 10px; }
+.workshop-outcome-label { gap: 9px; color: #3e5241; font-weight: 700; font-size: .8rem; }
+.live-workshop .workshop-outcome .workshop-route-name { margin: .55rem 0 .95rem; font-size: .9rem; color: #405347; }
+.live-workshop .workshop-outcome h5 { margin: 0 0 .45rem; font-size: clamp(1.1rem, 1.8vw, 1.45rem); font-weight: 720; line-height: 1.2; letter-spacing: -.025em; }
+.live-workshop .workshop-outcome p { max-width: 70ch; margin: 0; font-size: 1rem; line-height: 1.52; }
+.workshop-actions, .workshop-controls { flex-wrap: wrap; gap: 8px; }
+.workshop-controls { justify-content: space-between; margin-top: 21px; }
+
+html:has(.workshop-presenter[open]) { overflow: hidden; }
+.workshop-presenter:not([open]) { display: none; }
+.workshop-presenter[open] {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: clamp(16px, 3vw, 46px) clamp(18px, 4vw, 65px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: none;
+  color: var(--ws-ink);
+  background: #f6f5e9;
+}
+.workshop-presenter::backdrop { background: #182e23; }
+.workshop-projector { width: min(100%, 1440px); margin: 0 auto; }
+.workshop-projector-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-bottom: clamp(16px, 3vh, 34px);
+  padding-bottom: 12px;
+  background: #f6f5e9;
+  border-bottom: 1px solid #bac7b2;
+}
+.workshop-projector-bar > span { font-size: 1.14rem; font-weight: 720; }
+.workshop-presenter .workshop-board { padding: clamp(20px, 3.1vw, 48px); }
+.workshop-presenter .workshop-bookend { min-height: min(52dvh, 560px); }
+.workshop-presenter :is(.workshop-bookend h4, .workshop-scene h4) { max-width: 29ch; font-size: clamp(1.7rem, 4vw, 4.25rem); }
+.workshop-presenter :is(.workshop-context, .workshop-bookend p) { max-width: 78ch; font-size: clamp(1.03rem, 1.6vw, 1.65rem); }
+.workshop-presenter .workshop-option { font-size: clamp(1.08rem, 1.65vw, 1.75rem); }
+.workshop-presenter .workshop-outcome h5 { font-size: clamp(1.23rem, 2vw, 2rem); }
+.workshop-presenter .workshop-outcome p { font-size: clamp(1.02rem, 1.35vw, 1.45rem); }
+.workshop-presenter .workshop-round, .workshop-presenter .workshop-vote { font-size: clamp(.95rem, 1.2vw, 1.2rem); }
+
+@media (max-width: 650px) {
+  .workshop-bookend, .workshop-choices, .workshop-results[data-compare="true"] { grid-template-columns: 1fr; }
+  .workshop-print { max-height: 150px; overflow: hidden; }
+  .workshop-ballots { width: 240px; }
+  .live-workshop .workshop-option { padding: 13px; gap: 9px; }
+  .workshop-header .workshop-secondary { padding-inline: 10px; }
+  .workshop-round span + span::before { display: none; }
+  .workshop-projector-bar { gap: 6px; }
+  .workshop-projector-bar > span { font-size: .93rem; }
+  .workshop-projector-bar .workshop-secondary { font-size: .81rem; padding-inline: 9px; }
+}
