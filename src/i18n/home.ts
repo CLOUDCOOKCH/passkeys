@@ -1,7 +1,7 @@
 export type Lang = 'de' | 'en'
 export const home = {
   de: {
-    nav: ['Entdecken', 'Funktionsweise', 'Einrichten', 'Playground', 'FAQ'],
+    nav: ['Entdecken', 'Funktionsweise', 'Einrichten', 'Playground', 'FAQ', 'Bibliothek'],
     skip: 'Zum Inhalt',
     menu: 'Menü',
     close: 'Schliessen',
@@ -48,10 +48,11 @@ export const home = {
       'Für Unternehmen',
       'Wissensquiz',
       'Quellen und Glossar',
+      'Posterbibliothek',
     ],
   },
   en: {
-    nav: ['Discover', 'How it works', 'Get started', 'Playground', 'FAQ'],
+    nav: ['Discover', 'How it works', 'Get started', 'Playground', 'FAQ', 'Library'],
     skip: 'Skip to content',
     menu: 'Menu',
     close: 'Close',
@@ -97,6 +98,7 @@ export const home = {
       'For organisations',
       'Knowledge quiz',
       'Resources and glossary',
+      'Poster library',
     ],
   },
 } as const

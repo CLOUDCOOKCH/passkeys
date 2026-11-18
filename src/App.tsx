@@ -15,6 +15,7 @@ import { Header } from './components/Header'
 import { Brand } from './components/Brand'
 import { HeroScene } from './components/illustrations/HeroScene'
 import { PathArt } from './components/illustrations/PathArt'
+import { PosterLibrary } from './sections/PosterLibrary'
 import { Discover } from './sections/Discover'
 import { Playground } from './sections/Playground'
 import { Options } from './sections/Options'
@@ -25,7 +26,7 @@ const loadMotionFeatures = () =>
   import('./components/motionFeatures').then((module) => module.default)
 const paths = ['compare', 'business', 'how-technical']
 const kinds = ['everyday', 'business', 'technical'] as const
-const footTargets = ['setup', 'recovery', 'business', 'quiz', 'faq']
+const footTargets = ['setup', 'recovery', 'business', 'quiz', 'faq', 'library']
 function Welcome({ lang }: { lang: Lang }) {
   const t = home[lang]
   const [step, setStep] = useState(0)
@@ -130,6 +131,7 @@ export function App({ lang }: { lang: Lang }) {
         <Playground lang={lang} />
         <Quiz lang={lang} />
         <Resources lang={lang} />
+        <PosterLibrary lang={lang} />
       </main>
       <footer className="site-footer">
         <div className="wrap footer-inner">

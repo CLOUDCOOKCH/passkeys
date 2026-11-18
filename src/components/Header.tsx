@@ -3,7 +3,7 @@ import { Globe2, Menu, X } from 'lucide-react'
 import { home, type Lang } from '../i18n/home'
 import { Brand } from './Brand'
 
-const targets = ['paths', 'how', 'setup', 'playground', 'faq']
+const targets = ['paths', 'how', 'setup', 'playground', 'faq', 'library']
 const navGroup: Record<string, string> = {
   paths: 'paths',
   compare: 'paths',
@@ -16,6 +16,7 @@ const navGroup: Record<string, string> = {
   playground: 'playground',
   quiz: 'playground',
   faq: 'faq',
+  library: 'library',
 }
 
 function readingLocation(navigating: boolean) {

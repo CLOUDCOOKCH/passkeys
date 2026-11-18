@@ -12,7 +12,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "build": "npm run typecheck && vite build && node scripts/site-meta.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "posters": "node scripts/posters/generate.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",
@@ -33,6 +34,7 @@
     "eslint": "^10.15.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.14.0",
+    "qrcode": "^1.5.4",
     "tailwindcss": "^4.3.5",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.73.0",

@@ -1,0 +1,33 @@
+@font-face {
+  font-family: Manrope;
+  src: url('./media/manrope.woff2') format('woff2');
+  font-weight: 200 800;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('./media/instrument-serif-italic.woff2') format('woff2');
+  font-style: italic;
+  font-display: block;
+}
+* {box-sizing:border-box}
+body {margin:0;background:#e8ece6;color:#192923;font-family:Manrope, sans-serif}
+.print-tools {width:min(800px,calc(100% - 32px));margin:16px auto;display:flex;gap:12px;justify-content:space-between;align-items:center}
+.print-tools a {color:#24543f;font-size:.875rem}
+.print-tools button {border:0;border-radius:25px;background:#006e59;color:white;font:600 .9rem Manrope,sans-serif;padding:10px 17px;cursor:pointer}
+.print-tools :focus-visible {outline:3px solid #006e59;outline-offset:3px}
+.poster-viewport {position:relative;width:min(800px,100%);aspect-ratio:4/5;margin:0 auto 32px;overflow:hidden}
+.poster-sheet {position:absolute;top:0;left:0;overflow:hidden;width:800px;height:1000px;transform:scale(var(--screen-scale,1));transform-origin:top left}
+@page {size:A4 portrait;margin:0}
+@media print {
+  html,body {width:210mm;height:297mm;margin:0;background:white;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .print-tools {display:none}
+  .poster-viewport {width:210mm;height:297mm;margin:0;overflow:hidden}
+  /* A 194 mm wide artwork leaves an 8 mm safe margin on either side. */
+  .poster-sheet {top:50%;left:50%;transform-origin:center;transform:translate(-50%,-50%) scale(.9165354)}
+}
+.print-source { display:none }
+@media print {
+  .print-source { position:absolute; inset:auto 8mm 6mm; display:flex; align-items:center; justify-content:flex-end; gap:3mm; color:#214533; font-size:8pt; text-decoration:none; text-align:right; line-height:1.45 }
+  .print-source svg { width:17mm; height:17mm; display:block }
+}
