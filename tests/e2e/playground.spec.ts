@@ -46,3 +46,26 @@ test('both sign-in comparisons reach the success state with fictional inputs', a
   }
   await expect(comparison.getByText('Signed in', { exact: true })).toHaveCount(2)
 })
+
+test('hero simulation can be completed and replayed with the keyboard under reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('en/')
+  const hero = page.getByRole('figure', { name: 'Signing in with a passkey' })
+  const liveStatus = hero.locator('[aria-live="polite"]')
+  const control = hero.getByRole('button')
+  const playgroundLink = page.getByRole('link', { name: 'Try a simulation', exact: true })
+  await playgroundLink.focus()
+  await page.keyboard.press('Tab')
+  await expect(control).toBeFocused()
+
+  for (const [action, key, result] of [
+    ['Use a passkey', 'Enter', 'Passkey selected'],
+    ['Confirm locally', 'Space', 'You’re signed in'],
+    ['Replay', 'Enter', 'Password sign-in'],
+  ]) {
+    await expect(control).toHaveAccessibleName(action)
+    await page.keyboard.press(key)
+    await expect(liveStatus).toHaveText(result)
+    await expect(control).toBeFocused()
+  }
+})

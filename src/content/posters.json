@@ -1,0 +1,54 @@
+[
+  {
+    "id": "only-here",
+    "kind": "guide",
+    "de": {
+      "title": "Dein Fingerabdruck bleibt bei dir",
+      "description": "Das Gerät prüft den Fingerabdruck. Die Website erhält eine signierte Antwort."
+    },
+    "en": {
+      "title": "Your fingerprint stays with you",
+      "description": "Your device checks your fingerprint. The website receives a signed response."
+    },
+    "lesson": "how"
+  },
+  {
+    "id": "right-site",
+    "kind": "guide",
+    "de": {
+      "title": "Nur auf der richtigen Website",
+      "description": "Eine Website kann gleich aussehen. Dein Passkey ist an den echten Dienst gebunden."
+    },
+    "en": {
+      "title": "Only on the right site",
+      "description": "Two websites can look identical. Your passkey belongs to the real service."
+    },
+    "lesson": "playground"
+  },
+  {
+    "id": "this-is-fine",
+    "kind": "meme",
+    "de": {
+      "title": "Alles bestens.",
+      "description": "Die Bürotaube trinkt Kaffee. Rundherum stapeln sich die Passwort-Resets."
+    },
+    "en": {
+      "title": "This is fine.",
+      "description": "An office pigeon enjoys a coffee while password resets pile up around it."
+    },
+    "lesson": "setup"
+  },
+  {
+    "id": "two-buttons",
+    "kind": "meme",
+    "de": {
+      "title": "Zwei Knöpfe. Eine Entscheidung.",
+      "description": "Schon wieder das Passwort zurücksetzen? Der zweite Knopf hat einen anderen Vorschlag."
+    },
+    "en": {
+      "title": "Two buttons. One decision.",
+      "description": "Reset the password again? The second button has a different suggestion."
+    },
+    "lesson": "setup"
+  }
+]

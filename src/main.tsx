@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@fontsource-variable/manrope'
+import '@fontsource/instrument-serif/latin-400-italic.css'
 import './styles/site.css'
 import { App } from './App'
 

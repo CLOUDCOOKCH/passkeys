@@ -144,7 +144,7 @@ export function Discover({ lang }: { lang: DemoLanguage }) {
           <div className="lesson-walkthrough-copy">
             <div aria-live="polite" aria-atomic="true">
               <small>
-                {copy.step} {step + 1} / {copy.howSteps.length}
+                {step < 3 ? copy.registration : copy.signIn} · {copy.step} {step + 1} / {copy.howSteps.length}
               </small>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -180,7 +180,7 @@ export function Discover({ lang }: { lang: DemoLanguage }) {
         </details>
         <div className="lesson-links">
           <a href="#playground">
-            {lang === 'de' ? 'Im Playground ausprobieren' : 'Try it in the playground'}{' '}
+            {lang === 'de' ? 'Auf dem Spielplatz ausprobieren' : 'Try it in the playground'}{' '}
             <ArrowRight size={16} />
           </a>
         </div>
