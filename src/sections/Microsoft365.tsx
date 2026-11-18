@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react'
 import { FirstDayCard } from '../components/FirstDayCard'
 import { microsoft365 as guide } from '../content/microsoft365'
 import type { Lang } from '../i18n/home'
+import { CustomCardBuilder } from './CustomCardBuilder'
 import { M365Practice } from './M365Practice'
 import { M365Authenticator } from './M365Authenticator'
 
@@ -9,6 +10,7 @@ const sections = [
   { id: 'm365-key', de: 'Sicherheitsschlüssel einrichten', en: 'Set up a security key' },
   { id: 'm365-practice', de: 'Die erste Anmeldung üben', en: 'Practise your first sign-in' },
   { id: 'm365-authenticator', de: 'Microsoft Authenticator einrichten', en: 'Set up Microsoft Authenticator' },
+  { id: 'm365-card-builder', de: 'Startkarte fürs Team gestalten', en: 'Make a card for your team' },
   { id: 'm365-help', de: 'Ein Problem bei der Einrichtung lösen', en: 'Solve a setup problem' },
 ] as const
 
@@ -89,6 +91,7 @@ export function Microsoft365({ lang }: { lang: Lang }) {
           ))}
         </div>
       </section>
+      <CustomCardBuilder lang={lang} />
     </section>
   )
 }

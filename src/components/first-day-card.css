@@ -39,3 +39,5 @@
   text-decoration: underline;
 }
 .poster-library .first-day-card { margin-top: 2.5rem; }
+
+.first-day-links { display: flex; flex-wrap: wrap; gap: 0 1rem; }
