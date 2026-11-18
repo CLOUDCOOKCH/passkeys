@@ -4,6 +4,8 @@ An interactive guide to passwordless sign-in for individuals, organisations, and
 
 The poster library at `#library` offers fourteen designs in both languages, including twelve memes. Browse the featured Drake, Expanding Brain and astronaut posters, or expand the full collection. Each poster has an A4 PDF, a portrait PNG for sharing, and a print view. [German poster files](public/posters/de/) · [English poster files](public/posters/en/)
 
+The Microsoft 365 guide at `#microsoft-365` includes a fictional registration and sign-in exercise, a Microsoft Authenticator walkthrough, troubleshooting and a two-sided A6 first-day card for employees.
+
 ## Run locally
 
 Use Node.js 24 and npm. From the repository root:

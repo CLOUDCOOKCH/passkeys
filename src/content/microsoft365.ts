@@ -36,8 +36,32 @@ export const microsoft365 = {
     },
   ],
   portal: words('Sicherheitsinformationen in neuem Tab öffnen', 'Open Security info in a new tab'),
-  helpTitle: words('Der Passkey fehlt oder der Schlüssel wird abgelehnt?', 'Can’t see Passkey, or is your key rejected?'),
-  help: words('Prüfe zuerst, ob du im richtigen Geschäftskonto bist. Bitte dann die IT zu prüfen, ob «Passkey (FIDO2)» für deine Gruppe aktiviert und dein Schlüsselmodell zugelassen ist.', 'First check which work account you signed in to. Then ask IT to check that Passkey (FIDO2) is enabled for your group and that your key model is allowed.'),
+  symptoms: [
+    {
+      id: 'missing-passkey',
+      title: words('«Passkey» fehlt im Portal.', 'Passkey is missing from Security info.'),
+      action: words('Prüfe im Kontomenü die geschäftliche E-Mail-Adresse. Öffne für dieses Konto «Sicherheitsinformationen» → «Anmeldemethode hinzufügen».', 'Check the work email address in the account menu. For that account, open Security info → Add sign-in method.'),
+      escalation: words('Fehlt «Passkey» weiterhin, frage die IT, ob «Passkey (FIDO2)» für deine Gruppe aktiviert ist und du dich selbst registrieren darfst.', 'If Passkey is still missing, ask IT whether Passkey (FIDO2) is enabled for your group and whether you can register it yourself.'),
+    },
+    {
+      id: 'phone-only',
+      title: words('Mir wird nur mein Handy angeboten.', 'I only see my phone.'),
+      action: words('Gehe im Auswahldialog einen Schritt zurück. Wähle «Weitere Optionen» oder «Anderes Gerät verwenden», dann «Sicherheitsschlüssel». Verbinde den Schlüssel erst, wenn der Dialog dich dazu auffordert.', 'Go back one step in the device picker. Choose More options or Use another device, then Security key. Connect the key when prompted.'),
+      escalation: words('Fehlt die Auswahl auch im empfohlenen Firmenbrowser, nenne der IT dein Betriebssystem, den Browser und das Schlüsselmodell.', 'If that choice is also missing in your company’s recommended browser, tell IT your operating system, browser and key model.'),
+    },
+    {
+      id: 'forgot-pin',
+      title: words('Ich habe die Schlüssel-PIN vergessen.', 'I forgot my security key PIN.'),
+      action: words('Beende die PIN-Abfrage. Weitere Fehlversuche können den Schlüssel sperren. Melde dich mit deiner Ersatzmethode an und lass eine offene Sitzung bestehen.', 'Cancel the PIN prompt. Repeated guesses can block the key. Use your backup sign-in method and keep any existing session open.'),
+      escalation: words('Kontaktiere die IT, bevor du den Schlüssel zurücksetzt. Ein FIDO2-Reset löscht seine Passkeys für alle Konten. Kläre zuerst für jedes Konto den Ersatzweg.', 'Contact IT before resetting the key. A FIDO2 reset erases its passkeys for every account. Confirm you have a way back into each account first.'),
+    },
+    {
+      id: 'key-rejected',
+      title: words('Mein Sicherheitsschlüssel wird abgelehnt.', 'My security key is rejected.'),
+      action: words('Prüfe, ob du den von deiner Firma freigegebenen FIDO2-Schlüssel verwendest. Bei einem Anmeldeversuch brauchst du den Schlüssel, den du für genau dieses Konto registriert hast.', 'Check that you’re using a FIDO2 key approved by your company. For sign-in, use the specific key you registered to this account.'),
+      escalation: words('Wird er weiter abgelehnt, gib der IT den Wortlaut der Fehlermeldung und das Schlüsselmodell. Sie kann die Richtlinie für dein Konto prüfen.', 'If it’s still rejected, give IT the error message and the key model so they can check the policy for your account.'),
+    },
+  ],
   source: words('Microsoft Learn · Registrierung mit einem Sicherheitsschlüssel', 'Microsoft Learn · Register a passkey with a security key'),
   lastReviewed: '2026-11-18',
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Download, Expand, Minus, Plus, Printer } from 'lucide-react'
+import { FirstDayCard } from '../components/FirstDayCard'
 import posters from '../content/posters.json'
 import type { Lang } from '../i18n/home'
 import './posters.css'
@@ -150,6 +151,7 @@ export function PosterLibrary({ lang }: { lang: Lang }) {
             )
           })}
         </div>
+        <FirstDayCard lang={lang} />
       </div>
     </section>
   )

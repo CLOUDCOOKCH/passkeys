@@ -21,3 +21,5 @@ The poster library uses committed files in `public/posters/`, so Pages serves do
 Run `npm ci`, install Chromium with `npx playwright install chromium`, then run `npm run posters`. If using system Chromium, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable path. This renders a 1080 × 1350 PNG, a small WebP preview, a single A4 PDF and a standalone print page for each language and design. To refresh selected designs, pass their IDs, for example `npm run posters -- drake expanding-brain`. Inspect the exports and commit them alongside their sources.
 
 The A4 editions carry a QR code linking to the corresponding lesson. Set `VITE_SITE_ORIGIN` and `VITE_BASE_PATH` before regenerating for another domain or fork. Existing paper copies retain their original destination.
+
+To refresh the A6 Microsoft 365 first-day cards and their previews, run `node scripts/handouts/m365-first-day.mjs` with the same Chromium setup. Set `VITE_SITE_ORIGIN` and `VITE_BASE_PATH` to the intended public address before generating the printed QR codes. Check both pages of each PDF at actual size.

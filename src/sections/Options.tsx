@@ -594,7 +594,7 @@ function Tutorial({ lang }: Props) {
       </p>
       <div className="op-links">
         <a href="#microsoft-365">
-          {de ? 'Sicherheitsschlüssel für Microsoft 365 einrichten' : 'Set up a security key for Microsoft 365'}
+          {de ? 'Passkeys für Microsoft 365 einrichten' : 'Set up passkeys for Microsoft 365'}
           <ArrowRight size={16} aria-hidden="true" />
         </a>
       </div>
