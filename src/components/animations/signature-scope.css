@@ -1,0 +1,125 @@
+.signature-scope {
+  --scope-field: #102c26;
+  --scope-thread: #b1c77b;
+  --scope-edge: #dceba5;
+  --scope-secondary: #a8c6d6;
+  --scope-status: #e1e7bf;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0 clamp(9px, 1.4vw, 16px);
+  color: #f0f3dc;
+  background: #293e35;
+  border: 1px solid #25382e;
+  border-radius: 15px;
+  box-shadow: inset 0 1px #506052, inset 0 -3px #1e3027;
+  font-family: 'Manrope Variable', Manrope, sans-serif;
+}
+
+.signature-scope[data-phase='signed'] { --scope-status: #c6deed; }
+.signature-scope[data-phase='verified'] {
+  --scope-secondary: #9de4c6;
+  --scope-status: #b5efd0;
+}
+.signature-scope[data-phase='changed'] {
+  --scope-secondary: #ffb585;
+  --scope-status: #ffd3a7;
+}
+.signature-scope[data-phase='blocked'] {
+  --scope-thread: #829685;
+  --scope-edge: #a3b6a2;
+  --scope-status: #e7d9bc;
+}
+
+.signature-scope-panel,
+.signature-scope-foot,
+.signature-scope-name,
+.signature-scope-status,
+.signature-scope-legend,
+.signature-scope-legend span {
+  display: flex;
+  align-items: center;
+}
+.signature-scope-panel {
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 5px 12px;
+}
+.signature-scope-name {
+  gap: 8px;
+  color: #e5edd9;
+  font-weight: 670;
+  font-size: .91rem;
+  letter-spacing: -.018em;
+  line-height: 1.3;
+}
+.signature-scope-name svg { flex-shrink: 0; color: #c4d6ac; }
+.signature-scope-status {
+  gap: 6px;
+  color: var(--scope-status);
+  font-size: .76rem;
+  line-height: 1.3;
+  font-weight: 620;
+  text-align: end;
+}
+.signature-scope-status svg { flex-shrink: 0; }
+
+.signature-scope-window {
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  border: 1px solid #182820;
+  border-bottom-color: #5c6d5a;
+  background: var(--scope-field);
+  box-shadow: 0 0 0 2px #1f3329;
+}
+.signature-scope-plot { display: block; width: 100%; height: auto; }
+.signature-scope-grid-line { stroke: #395047; stroke-width: 1; }
+.signature-scope-grid-dot { fill: #456052; }
+.signature-scope-axis { stroke: #587165; stroke-width: .85; }
+.signature-scope-edge { stroke: #7c9280; stroke-width: 1.45; }
+.signature-scope-ribbon { stroke: var(--scope-thread); stroke-width: 1; }
+.signature-scope-ribbon [data-accent='true'] { stroke: var(--scope-edge); stroke-width: 1.5; }
+.signature-scope-overlay { stroke: var(--scope-secondary); stroke-width: 1; }
+.signature-scope-overlay [data-center='true'] { stroke-width: 2.1; }
+.signature-scope[data-phase='changed'] .signature-scope-overlay { stroke-dasharray: 5 3; }
+.signature-scope-sweep { visibility: hidden; color: var(--scope-edge); }
+
+.signature-scope-foot {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px 15px;
+  padding: 12px 5px 15px;
+  color: #d3decb;
+  font-size: .73rem;
+  line-height: 1.45;
+}
+.signature-scope-legend { flex-wrap: wrap; gap: 6px 14px; }
+.signature-scope-legend span { gap: 6px; font-weight: 620; }
+.signature-scope-legend i { display: inline-block; width: 19px; height: 4px; border-block: 1px solid var(--scope-edge); }
+.signature-scope-legend .signature-scope-secondary { border: 0; height: 2px; background: var(--scope-secondary); }
+.signature-scope[data-phase='changed'] .signature-scope-secondary {
+  height: 0; background: transparent; border-top: 2px dashed var(--scope-secondary);
+}
+.signature-scope-note { color: #bacab9; font-size: .68rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .signature-scope-sweep {
+    visibility: visible;
+    animation: signature-scope-scan .68s cubic-bezier(.22,.54,.44,.91) 1 both;
+  }
+  @keyframes signature-scope-scan {
+    0% { opacity: 0; transform: translateX(0); }
+    12% { opacity: .62; }
+    86% { opacity: .48; }
+    100% { opacity: 0; transform: translateX(720px); }
+  }
+}
+@media (max-width: 500px) {
+  .signature-scope-name { font-size: .84rem; }
+  .signature-scope-panel { padding: 11px 2px; }
+  .signature-scope-foot { padding: 10px 2px 13px; }
+}

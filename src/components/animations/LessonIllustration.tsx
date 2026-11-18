@@ -31,7 +31,7 @@ function Fingerprint() {
   </g>
 }
 
-function Phone({ ok = false, fingerprint = false }: { ok?: boolean; fingerprint?: boolean }) {
+function Phone({ ok = false, fingerprint = false, pin = false }: { ok?: boolean; fingerprint?: boolean; pin?: boolean }) {
   return <g stroke={ink} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
     <rect x="-29" y="-52" width="62" height="111" rx="12" fill="#79a38b" />
     <rect x="-32" y="-55" width="61" height="111" rx="12" fill={ink} />
@@ -40,7 +40,9 @@ function Phone({ ok = false, fingerprint = false }: { ok?: boolean; fingerprint?
     <path d="M-10-46H5" strokeWidth="2" /><circle cx="9" cy="-46" r="1.1" fill={ink} stroke="none" />
     <g transform="translate(-1 1)">
       <rect x="-23" y="-23" width="46" height="51" rx="6" fill={paper} stroke="#698b76" strokeWidth="1" />
-      {ok ? <Check /> : fingerprint ? <Fingerprint /> : <KeyMark color={mint} />}
+      {ok ? <Check /> : pin ? <g fill={ink} stroke="none">
+        {[-10,0,10].flatMap(x => [-8,2,12].map(y => <circle key={x + ':' + y} cx={x} cy={y} r="2.2"/>))}
+      </g> : fingerprint ? <Fingerprint /> : <KeyMark color={mint} />}
     </g>
     <path d="M-9 45H7" strokeWidth="2" />
     <path d="M-33-22v10M-33-7v6M30-16v15" strokeWidth="1.6" />
@@ -138,7 +140,7 @@ function AddressCard({ x, y, address, result }: { x: number; y: number; address:
     <rect width="194" height="52" rx="8" fill={paper} strokeWidth="2" />
     <path d="M1 13h192" strokeWidth="1.3" />
     <path d="M10 7h1m5 0h1m5 0h1" strokeLinecap="round" strokeWidth="2.3" />
-    <text x="12" y="37" fill={ink} stroke="none" fontSize="12.5" fontWeight="710">{address}</text>
+    <text x="12" y="37" fill={ink} stroke="none" fontSize={address.startsWith('https:') ? 9 : 12.5} fontWeight="710">{address}</text>
     {result && <g transform="translate(173 32) scale(.66)">{result === 'matched' ? <Check /> :
       <g strokeWidth="2" strokeLinecap="round"><circle r="14" fill="#f6dfbb" /><path d="m-4-4 8 8m0-8-8 8" /></g>}</g>}
   </g>
@@ -146,8 +148,11 @@ function AddressCard({ x, y, address, result }: { x: number; y: number; address:
 
 type Scene = 'usb' | 'nfc' | 'phone' | 'domain' | 'journey'
 
-export function PlaygroundDrawing({ scene, step, synced = true, wrongDomain = false }:
-  { scene: Scene; step: number; synced?: boolean; wrongDomain?: boolean }) {
+export function PlaygroundDrawing({ scene, step, synced = true, wrongDomain = false,
+  pin = false, interrupted = false, unavailable = false, backup = false,
+  addresses = ['atelier-help.example', 'atelier.example'] }:
+  { scene: Scene; step: number; synced?: boolean; wrongDomain?: boolean; pin?: boolean;
+    interrupted?: boolean; unavailable?: boolean; backup?: boolean; addresses?: string[] }) {
   return <svg className="lesson-art lab-art" viewBox="0 0 380 190" aria-hidden="true">
     {scene !== 'domain' && <ellipse cx="195" cy="158" rx={scene === 'phone' ? 68 : 130} ry="6" fill="#adbfae" opacity=".52" />}
     {scene === 'usb' && <>
@@ -160,19 +165,23 @@ export function PlaygroundDrawing({ scene, step, synced = true, wrongDomain = fa
       <g className="lab-moving-key" style={{ transform: step ? 'translate(170px, 107px) rotate(-25deg)' : 'translate(105px, 128px) rotate(-25deg)' }}><HardwareKey ok={step === 2} /></g>
       {step > 0 && <g className="lab-nfc-field" fill="none" stroke={ink} strokeWidth="2.3" strokeLinecap="round"><path d="M169 67q8 1 10 8m-9-15q13 2 16 13" /></g>}
     </>}
-    {scene === 'phone' && <g transform="translate(190 91) rotate(-7) scale(1.22)"><Phone ok={step === 2} fingerprint={step === 1} /></g>}
+    {scene === 'phone' && <g transform="translate(190 91) rotate(-7) scale(1.22)"><Phone ok={step === 2} fingerprint={step === 1 && !interrupted} pin={step === 1 && pin && !interrupted} /></g>}
     {scene === 'domain' && <>
-      <AddressCard x={122} y={34} address="atelier-help.example" result={wrongDomain || step ? 'unrelated' : undefined} />
-      <AddressCard x={62} y={104} address="atelier.example" result={step ? 'matched' : undefined} />
+      <AddressCard x={122} y={34} address={addresses[0]} result={wrongDomain || step ? 'unrelated' : undefined} />
+      <AddressCard x={62} y={104} address={addresses[1]} result={step ? 'matched' : undefined} />
     </>}
     {scene === 'journey' && <>
       <g transform="translate(285 99)">{step < 2 ? <Site registered={step > 0} /> : <Laptop ok={step === 3} />}</g>
-      {synced ? <g transform="translate(85 89)"><Phone /></g> :
-        <g className="lab-moving-key" style={{ transform: step === 3 ? 'translate(213px, 133px)' : 'translate(84px, 91px)' }}>
+      {synced ? <g transform="translate(85 89)" opacity={unavailable ? .43 : 1}><Phone /></g> :
+        <g className="lab-moving-key" opacity={unavailable ? .38 : 1} style={{ transform: step === 3 && !backup ? 'translate(213px, 133px)' : 'translate(84px, 91px)' }}>
           <HardwareKey ok={step === 3} />
         </g>}
       {step === 1 && <Transfer kind="public" />}
-      {step === 2 && synced && <Transfer kind="sync" />}
+      {step === 2 && synced && !unavailable && <Transfer kind="sync" />}
+      {backup && <g transform="translate(213 133) rotate(-8)"><HardwareKey ok/><path d="M-22-18v33" stroke="#825297" strokeWidth="5"/></g>}
     </>}
+    {interrupted && <g transform="translate(201 72)" stroke="#694c2d" strokeWidth="2" strokeLinecap="round">
+      <circle r="15" fill="#f6dfb6"/><path d="m-4-4 8 8m-8 0 8-8"/>
+    </g>}
   </svg>
 }

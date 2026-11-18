@@ -1,164 +1,71 @@
-import { useReducer, useRef } from 'react'
-import { ArrowRight, Globe, Route, RotateCcw, Smartphone, Usb } from 'lucide-react'
-import { PlaygroundDrawing } from '../components/animations/LessonIllustration'
+import { useCallback, useState } from 'react'
+import { Activity, ArrowRight, Check, Globe, Route, Smartphone, Usb } from 'lucide-react'
 import { playground } from '../content/playground'
 import type { DemoLanguage } from '../content/discovery'
-import { initialLab, updateLab } from '../lib/playground'
-import type { Experiment, LabChoice } from '../lib/playground'
+import type { Experiment } from '../lib/playground'
+import { PlaygroundBench } from './PlaygroundBench'
+import { SignatureStudio } from './SignatureStudio'
 import '../styles/lessons.css'
+import './playground.css'
 
-const experiments: Experiment[] = ['hardware', 'phone', 'domain', 'journey']
-const icons = [Usb, Smartphone, Globe, Route]
+const stations = ['signature', 'hardware', 'phone', 'domain', 'journey'] as const
+type Station = Experiment | 'signature'
+const icons = { signature: Activity, hardware: Usb, phone: Smartphone, domain: Globe, journey: Route }
 
 export function Playground({ lang }: { lang: DemoLanguage }) {
-  const [state, dispatch] = useReducer(updateLab, initialLab)
-  const panelHeading = useRef<HTMLHeadingElement>(null)
-  const { experiment, connection, storage, step } = state
+  const de = lang === 'de'
+  const [station, setStation] = useState<Station>('signature')
+  const [completed, setCompleted] = useState<Station[]>([])
+  const finish = useCallback((id: Station) => {
+    setCompleted(previous => previous.includes(id) ? previous : [...previous, id])
+  }, [])
+  const finishStudio = useCallback(() => finish('signature'), [finish])
+  const finishBench = useCallback(() => finish(station), [finish, station])
   const copy = playground[lang]
-  const steps =
-    experiment === 'hardware'
-      ? copy[connection]
-      : experiment === 'journey'
-        ? storage === 'synced'
-          ? copy.syncJourney
-          : copy.boundJourney
-        : copy[experiment]
-  const item = steps[step]
-  const finished = step === steps.length - 1
-  const dragActive = experiment === 'hardware' && connection === 'usb' && step === 0
-
-  function option(choice: LabChoice, label: string) {
-    const selected = choice === connection || choice === storage
-    return (
-      <button
-        type="button"
-        aria-pressed={selected}
-        onClick={() => dispatch({ type: 'option', choice })}
-      >
-        {label}
-      </button>
-    )
-  }
-  function advance() {
-    dispatch({ type: 'advance' })
-  }
+  const names = [de ? 'Signaturstudio' : 'Signature studio', ...copy.modules]
+  const next = (stations.indexOf(station) + 1) % stations.length
 
   return (
-    <section className="lesson-shell" id="playground" aria-labelledby="lab-heading">
-      <h2 id="lab-heading">{copy.title}</h2>
-      <p className="lesson-intro">{copy.intro}</p>
-      <div className="lab-layout">
-        <div className="lab-tabs" role="group" aria-label={copy.choose}>
-          {experiments.map((id, index) => {
-            const Icon = icons[index]
+    <section className="lab-playground" id="playground" aria-labelledby="lab-heading">
+      <div className="lesson-shell lab-shell">
+        <header className="lab-masthead">
+          <h2 id="lab-heading">{de ? 'Passkey-' : 'Passkey '}<wbr /><em>{de ? 'Spielplatz' : 'playground'}</em></h2>
+          <p>{de
+            ? 'Signiere eine Nachricht, tausche ein Zeichen aus und prüfe, was noch passt. Fünf Experimente zum Anfassen. Alles bleibt in deinem Browser.'
+            : 'Sign a message, change one character and see what still checks out. Five hands-on experiments, all in your browser.'}</p>
+        </header>
+        <div className="lab-station-rail" role="group" aria-label={copy.choose}>
+          {stations.map((id, i) => {
+            const Icon = icons[id]
+            const done = completed.includes(id)
             return (
-              <button
-                key={id}
-                type="button"
-                aria-pressed={experiment === id}
-                aria-controls="lab-content"
-                onClick={() => dispatch({ type: 'choose', experiment: id })}
-              >
-                <Icon size={22} />
-                <span>{copy.modules[index]}</span>
+              <button key={id} type="button" data-station={id} aria-pressed={station === id}
+                aria-controls="lab-worktop" onClick={() => setStation(id)}>
+                <Icon size={20} strokeWidth={1.7} aria-hidden="true" />
+                <span>{names[i]}</span>
+                {done && <Check className="station-check" size={14} aria-hidden="true" />}
               </button>
             )
           })}
         </div>
-        <div className="lab-panel" id="lab-content">
-          <div className="lab-drawing" data-experiment={experiment}>
-            <div className="lab-svg-wrap">
-              <PlaygroundDrawing
-                scene={experiment === 'hardware' ? connection : experiment}
-                step={step}
-                synced={storage === 'synced'}
-                wrongDomain={state.wrongDomain}
-              />
-              {dragActive && (
-                <>
-                  <button
-                    type="button"
-                    className="lab-drag-source"
-                    aria-label={
-                      lang === 'de'
-                        ? 'Abgebildeten Schlüssel einstecken'
-                        : 'Insert the illustrated key'
-                    }
-                    draggable
-                    onDragStart={(e) => {
-                      e.dataTransfer.setData('application/x-passkeys-lesson', 'key')
-                      e.dataTransfer.effectAllowed = 'move'
-                    }}
-                    onClick={advance}
-                  />
-                  <div
-                    className="lab-drop-target"
-                    aria-hidden="true"
-                    onDragOver={(e) => {
-                      if (e.dataTransfer.types.includes('application/x-passkeys-lesson'))
-                        e.preventDefault()
-                    }}
-                    onDrop={(e) => {
-                      e.preventDefault()
-                      if (e.dataTransfer.getData('application/x-passkeys-lesson') === 'key')
-                        advance()
-                    }}
-                  />
-                </>
-              )}
-            </div>
-            <small className="lab-caption">{dragActive ? copy.drag : copy.simulation}</small>
+        <div id="lab-worktop">
+          <div hidden={station !== 'signature'}>
+            <SignatureStudio lang={lang} onComplete={finishStudio} />
           </div>
-          <div className="lab-content">
-            {experiment === 'hardware' && (
-              <div className="lab-switch" role="group" aria-label={copy.transport}>
-                {option('usb', 'USB')}
-                {option('nfc', 'NFC')}
-              </div>
-            )}
-            {experiment === 'journey' && (
-              <div className="lab-switch" role="group" aria-label={copy.kind}>
-                {option('synced', copy.synced)}
-                {option('bound', copy.bound)}
-              </div>
-            )}
-            <div aria-live="polite" aria-atomic="true">
-              <h3 ref={panelHeading} tabIndex={-1}>
-                {item.title}
-              </h3>
-              <p>{item.text}</p>
-              {experiment === 'domain' && state.wrongDomain && (
-                <p className="lab-feedback">{copy.wrong}</p>
-              )}
-            </div>
-            {experiment === 'domain' && !finished ? (
-              <div className="lab-domain-choices">
-                {(['atelier-help.example', 'atelier.example'] as const).map((address) => (
-                  <button
-                    className="lesson-secondary"
-                    key={address}
-                    onClick={() => {
-                      dispatch({ type: 'domain', address })
-                      if (address === 'atelier.example') panelHeading.current?.focus()
-                    }}
-                  >
-                    <Globe size={16} />
-                    {address}
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <button
-                type="button"
-                className="lesson-action"
-                onClick={() => (finished ? dispatch({ type: 'restart' }) : advance())}
-              >
-                {finished ? copy.restart : item.action}
-                {finished ? <RotateCcw size={16} /> : <ArrowRight size={16} />}
-              </button>
-            )}
-          </div>
+          {station !== 'signature' &&
+            <PlaygroundBench key={station} lang={lang} experiment={station} onComplete={finishBench} />}
         </div>
+        <footer className="lab-ledger">
+          <div className="lab-completion" role="status">
+            <span className="lab-marks" aria-hidden="true">
+              {stations.map(id => <i key={id} data-done={completed.includes(id)} />)}
+            </span>
+            <span><b>{completed.length} / {stations.length}</b> {de ? 'abgeschlossen' : 'completed'}</span>
+          </div>
+          <button type="button" className="lab-next" onClick={() => setStation(stations[next])}>
+            {de ? 'Weiter zu' : 'Up next'} · {names[next]} <ArrowRight size={15} aria-hidden="true" />
+          </button>
+        </footer>
       </div>
     </section>
   )
