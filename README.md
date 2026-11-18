@@ -6,6 +6,8 @@ The poster library at `#library` offers fourteen designs in both languages, incl
 
 The Microsoft 365 guide at `#microsoft-365` includes a fictional registration and sign-in exercise, a Microsoft Authenticator walkthrough, troubleshooting and a two-sided A6 first-day card for employees. At `#m365-card-builder`, IT teams can choose a method and language, add their organisation and help-desk contact, then print or download a customised PDF. The card is generated in the browser.
 
+The playground at `#playground` lets visitors sign and change a message with a temporary browser-generated key, verify it and save the resulting trace as SVG. Four companion experiments cover hardware keys, phone unlock, domains and device changes.
+
 ## Run locally
 
 Use Node.js 24 and npm. From the repository root:

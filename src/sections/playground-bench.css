@@ -1,0 +1,181 @@
+.playground-bench.lab-panel {
+  --bench-line: #b4c5b5;
+  --bench-ink: #243e30;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  background: #fffef7;
+  border-color: var(--bench-line);
+}
+.playground-bench .bench-stage.lab-drawing {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  align-content: stretch;
+  padding: 0;
+  color: var(--bench-ink);
+  border-inline-end: 1px solid var(--bench-line);
+  background-color: #e9f1e3;
+  background-image: radial-gradient(circle at 1px 1px, #98ac933d 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.playground-bench .bench-meter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid var(--bench-line);
+  background: #f5f7ea;
+  font-size: 0.84rem;
+  font-weight: 660;
+  font-variant-numeric: tabular-nums;
+}
+.bench-meter progress {
+  appearance: none;
+  border: 0;
+  width: 5rem;
+  height: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #cbd9c6;
+  color: #476f55;
+}
+.bench-meter progress::-webkit-progress-bar {
+  background: #cbd9c6;
+}
+.bench-meter progress::-webkit-progress-value {
+  background: #476f55;
+}
+.bench-meter progress::-moz-progress-bar {
+  background: #476f55;
+}
+.playground-bench .lab-svg-wrap {
+  width: 100%;
+  margin: 0.85rem auto;
+}
+.playground-bench .lab-caption {
+  width: 100%;
+  min-height: 2.7rem;
+  padding: 0.65rem 1rem;
+  border-top: 1px solid var(--bench-line);
+  background: #eef3e6;
+  font-size: 0.84rem;
+}
+.playground-bench .lab-content {
+  padding: clamp(1.25rem, 3.4vw, 2.75rem);
+}
+.bench-switch-wrap > span {
+  display: block;
+  margin: 0 0 0.35rem;
+  font-size: 0.83rem;
+  font-weight: 670;
+  color: #435c4b;
+}
+.playground-bench .lab-switch {
+  margin-bottom: 0.95rem;
+}
+.playground-bench .lab-switch button {
+  min-height: 40px;
+}
+.bench-instructions {
+  margin: 0.2rem 0 1rem;
+}
+.playground-bench .lab-art {
+  max-width: none;
+}
+.bench-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+.bench-cancel {
+  background: none;
+  border: 0;
+  color: #345743;
+  font: inherit;
+  font-size: 0.91rem;
+  min-height: 44px;
+  text-underline-offset: 0.25em;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.playground-bench .lab-content p.lab-feedback {
+  margin-top: 0.6rem;
+  background: #f7ead5;
+  padding: 0.55rem 0.7rem;
+  border-radius: 6px;
+  color: #754617;
+}
+.playground-bench .lab-domain-choices {
+  margin: 0.25rem 0 0;
+}
+.lab-domain-choices button span {
+  overflow-wrap: anywhere;
+  text-align: start;
+  min-width: 0;
+}
+.playground-bench .bench-hotspot {
+  position: absolute;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+  border: 1.5px dashed #21593c;
+  border-radius: 1rem;
+  background: #e6f4d90e;
+  box-shadow: 0 0 0 2px #fffff5a6;
+}
+.playground-bench .bench-hotspot:hover {
+  background: #c6e3ac30;
+}
+.playground-bench .bench-hotspot:focus-visible {
+  outline: 3px solid #20563d;
+  outline-offset: 4px;
+}
+.bench-spot-phone {
+  left: 50%;
+  top: 48%;
+  width: 15%;
+  height: 33%;
+}
+.playground-bench .bench-spot-usb-0 {
+  inset: auto;
+  left: 20%;
+  top: 70%;
+  width: 24%;
+  height: 28%;
+}
+.bench-spot-usb-1 {
+  left: 41%;
+  top: 73%;
+  width: 10%;
+  height: 20%;
+}
+.bench-spot-nfc-0 {
+  left: 26%;
+  top: 68%;
+  width: 21%;
+  height: 29%;
+}
+.bench-spot-nfc-1 {
+  left: 59%;
+  top: 45%;
+  width: 13%;
+  height: 30%;
+}
+@media (max-width: 740px) {
+  .playground-bench.lab-panel {
+    grid-template-columns: 1fr;
+  }
+  .playground-bench .bench-stage.lab-drawing {
+    border-inline-end: none;
+    border-bottom: 1px solid var(--bench-line);
+    min-height: 0;
+  }
+  .playground-bench .lab-svg-wrap {
+    max-width: 370px;
+    margin: 0.25rem auto;
+  }
+}
