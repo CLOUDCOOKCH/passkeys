@@ -318,20 +318,32 @@
 .lab-moving-key {
   transition: transform 0.5s cubic-bezier(0.18, 0.84, 0.28, 1);
 }
-.lesson-packet {
-  animation: lesson-transmit 0.7s ease-out 1 both;
+.lesson-parcel {
+  transform: translate(217px, 81px);
+  animation: lesson-deliver .65s cubic-bezier(.18,.78,.3,1) both;
 }
-
-@keyframes lesson-transmit {
-  0% {
-    transform: translate(0, 0);
-  }
-  70% {
-    transform: translate(80px, -12px);
-  }
-  100% {
-    transform: translate(112px, -8px);
-  }
+.lesson-parcel-back {
+  transform: translate(138px, 81px);
+  animation-direction: reverse;
+}
+.lesson-draw-check { stroke-dasharray: 1; animation: lesson-confirm .3s ease-out; }
+.lesson-fingerprint, .lab-nfc-field { animation: lesson-sense .35s ease-out; }
+.lab-drawing[data-experiment='phone'] { background-color: #e9e6f0; }
+.lab-drawing[data-experiment='domain'] { background-color: #f4e9d4; }
+.lab-drawing[data-experiment='journey'] { background-color: #e5ecef; }
+.lesson-draw-check, .lesson-fingerprint, .lab-nfc-field { animation-iteration-count: 1; }
+@keyframes lesson-confirm {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes lesson-sense {
+  from { opacity: .4; }
+  to { opacity: 1; }
+}
+@keyframes lesson-deliver {
+  0% { transform: translate(138px, 81px); }
+  45% { transform: translate(177px, 75px); }
+  100% { transform: translate(217px, 81px); }
 }
 @media (max-width: 750px) {
   .lesson-compare,
@@ -361,6 +373,11 @@
     padding: 9px 12px;
     border-radius: 12px;
   }
+  .lab-tabs button span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
   .lab-tabs svg,
   .lab-domain-choices svg {
     flex-shrink: 0;
@@ -368,7 +385,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .lab-moving-key,
-  .lesson-packet {
+  .lesson-parcel,
+  .lesson-draw-check,
+  .lab-nfc-field,
+  .lesson-fingerprint {
     transition: none;
     animation: none;
   }

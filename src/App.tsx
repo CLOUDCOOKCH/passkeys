@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
   ArrowDown,
-  ArrowDownRight,
   ArrowRight,
   ArrowUp,
   ArrowUpRight,
@@ -54,14 +53,11 @@ function Welcome({ lang }: { lang: Lang }) {
           </div>
         </div>
         <figure className="hero-art" aria-label={t.fig}>
-          <HeroScene phase={(['idle', 'password', 'verified'] as const)[step]} />
+          <HeroScene phase={(['idle', 'confirm', 'verified'] as const)[step]} />
           <figcaption>
             <div className="scene-caption">
-              <span className="scene-dot" />
-              <span aria-live="polite">
-                {step > 0 ? t.status[0] + ' · ' : ''}
-                {t.status[step]}
-              </span>
+              <span className="scene-caption-label">{t.simulation}</span>
+              <span aria-live="polite">{t.status[step]}</span>
             </div>
             <button className="scene-control" onClick={() => setStep((step + 1) % 3)}>
               {step === 0 ? (
@@ -78,13 +74,7 @@ function Welcome({ lang }: { lang: Lang }) {
       </section>
       <section id="paths" className="paths-section" aria-labelledby="paths-title">
         <div className="wrap">
-          <div className="paths-heading">
-            <div>
-              <h2 id="paths-title">{t.paths}</h2>
-              <p>{t.pathIntro}</p>
-            </div>
-            <ArrowDownRight className="heading-arrow" size={35} />
-          </div>
+          <h2 className="paths-heading" id="paths-title">{t.paths}</h2>
           <LazyMotion features={loadMotionFeatures} strict>
             <div className="path-grid">
               {t.cards.map(([audience, title, desc], i) => (
@@ -92,8 +82,8 @@ function Welcome({ lang }: { lang: Lang }) {
                   key={paths[i]}
                   className={'path-card path-' + kinds[i]}
                   href={'#' + paths[i]}
-                  whileHover={{ y: -3 }}
-                  transition={{ duration: 0.15 }}
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.18 }}
                 >
                   <PathArt kind={kinds[i]} />
                   <span className="path-audience">{audience}</span>

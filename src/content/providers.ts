@@ -85,8 +85,8 @@ export const providers: Provider[] = [
     name: t('Windows Hello', 'Windows Hello'),
     category: 'platform',
     overview: t(
-      'Windows Hello prüft dein Gesicht, deinen Fingerabdruck oder deine Windows-PIN lokal. Ein WebAuthn-Passkey ist der kryptografische Anmeldenachweis, dessen Nutzung du damit freigeben kannst.',
-      'Windows Hello checks your face, fingerprint or Windows PIN locally. A WebAuthn passkey is the cryptographic credential you can authorise it to use.',
+      'Dein Passkey meldet dich bei der Website an. Mit Windows Hello gibst du ihn auf dem PC frei – per Gesichtserkennung, Fingerabdruck oder Windows-PIN.',
+      'The passkey signs you in to the website. Windows Hello lets you authorise its use on your PC with your face, fingerprint or Windows PIN.',
     ),
     tradeoff: t(
       'Achte im Windows-Dialog auf den Speicherort. Ein lokal auf diesem PC gespeicherter Passkey braucht einen eigenen Ersatzweg.',
@@ -116,8 +116,8 @@ export const providers: Provider[] = [
       'Proton Pass stores passkeys in login items in your vault, making them available through your provider on supported devices.',
     ),
     tradeoff: t(
-      'Praktisch für einen bestehenden Proton-Tresor. Prüfe vor einem Gerätewechsel, wie du auch deine verschlüsselten Daten wiederherstellst.',
-      'Useful if you already keep a Proton vault. Before changing devices, check how to recover access to your encrypted data.',
+      'Prüfe vor einem Gerätewechsel, wie du wieder an deinen Proton-Tresor und seine verschlüsselten Inhalte kommst.',
+      'Before changing devices, check how to recover your Proton vault and the encrypted data inside it.',
     ),
     prepare: t(
       'Entsperre die Proton-Pass-Erweiterung auf deinem Computer. Prüfe auf dem Smartphone, ob Proton Pass als Anbieter für Passkeys eingerichtet ist.',
@@ -193,8 +193,8 @@ export const providers: Provider[] = [
     name: t('FIDO2-Sicherheitsschlüssel', 'FIDO2 security key'),
     category: 'hardware',
     overview: t(
-      'Ein kompatibler Schlüssel, etwa ein YubiKey mit FIDO2, trägt seinen Passkey mit dir. Du verbindest ihn über USB oder bei unterstützten Geräten über NFC.',
-      'A compatible key, such as a FIDO2-capable YubiKey, carries its passkey with you. Connect over USB or use NFC with a supported device.',
+      'Auf einem kompatiblen Schlüssel, etwa einem YubiKey mit FIDO2, nimmst du deinen Passkey mit. Du verbindest ihn über USB oder bei unterstützten Geräten über NFC.',
+      'Carry your passkey on a compatible key, such as a FIDO2-capable YubiKey. Connect over USB or use NFC with a supported device.',
     ),
     tradeoff: t(
       'Der Passkey bleibt an diesen Schlüssel gebunden. Eine Registrierung als zweiter Faktor nach dem Passwort ist ein anderer Modus. Richte einen zweiten Schlüssel separat ein.',
@@ -221,21 +221,6 @@ export const categoryLabels = {
   platform: t('Geräteanbieter', 'Device providers'),
   manager: t('Passwortmanager', 'Password managers'),
   hardware: t('Sicherheitsschlüssel', 'Security keys'),
-}
-
-export const categoryDescriptions = {
-  platform: t(
-    'Mit der Gerätesperre bestätigen. Wo der Passkey gespeichert und synchronisiert wird, hängt vom gewählten Anbieter ab.',
-    'Confirm with your device lock. Where the passkey is saved and synced depends on the provider you choose.',
-  ),
-  manager: t(
-    'Ein Tresor begleitet dich über Systemgrenzen hinweg. Prüfe die Unterstützung für deinen Browser und dein Smartphone.',
-    'One vault can travel across platforms. Check support for your browser and phone.',
-  ),
-  hardware: t(
-    'Ein physischer Schlüssel für mehrere Geräte. Transportiere ihn wie einen Hausschlüssel und plane einen Ersatz ein.',
-    'One physical key can work across devices. Carry it like a house key and arrange a spare.',
-  ),
 }
 
 export const reasoning: Record<Recommendation, Copy> = {

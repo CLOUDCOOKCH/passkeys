@@ -25,7 +25,7 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
   de: {
     title: 'Passkey-Spielplatz',
     intro:
-      'Steck einen Schlüssel ein, entsperre ein Handy oder prüfe eine Adresse. Alles ist simuliert und funktioniert ohne Zugangsdaten.',
+      'Steck Mikas Sicherheitsschlüssel ein, prüfe eine Webadresse oder probiere einen Gerätewechsel aus. Jede Station ist eine Simulation mit einem fiktiven Konto.',
     choose: 'Experiment wählen',
     modules: [
       'Sicherheitsschlüssel',
@@ -34,7 +34,7 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
       'Reise eines Passkeys',
     ],
     simulation: 'Simulation',
-    drag: 'Ziehe den Schlüssel zum Laptop oder nutze die Schaltfläche.',
+    drag: 'Zieh den Schlüssel zum Laptop oder tippe auf «Schlüssel einstecken».',
     transport: 'Verbindung',
     usb: [
       {
@@ -44,28 +44,28 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
       },
       {
         title: 'Schlüssel erkannt',
-        text: 'Für diesen Beispielschlüssel bestätigt Mika die Verwendung mit einer lokalen PIN und einer Berührung.',
+        text: 'Mika gibt die PIN des Schlüssels ein und berührt das Kontaktfeld. So bestätigt Mika die Anmeldung.',
         action: 'Verifikation simulieren',
       },
       {
         title: 'Anmeldung bestätigt',
-        text: 'Der Schlüssel hat die Antwort signiert. Danach kann Mika ihn abziehen und sicher aufbewahren.',
+        text: 'Das Atelier hat die Signatur geprüft. Mika kann den Schlüssel jetzt abziehen. Der Passkey bleibt darauf gespeichert.',
       },
     ],
     nfc: [
       {
         title: 'Schlüssel ans Handy halten',
-        text: 'Beide Geräte unterstützen NFC. Bringe den Schlüssel nahe an die Rückseite des Handys.',
+        text: 'Mikas Handy und der Schlüssel unterstützen NFC. Für diese Funkverbindung müssen sie ganz nah beieinander sein.',
         action: 'Schlüssel annähern',
       },
       {
         title: 'Schlüssel erkannt',
-        text: 'NFC überträgt die Anfrage im Nahbereich. In diesem Beispiel bestätigt Mika die Verwendung des Schlüssels mit seiner PIN.',
+        text: 'Das Handy hat den Schlüssel über NFC gefunden. Jetzt bestätigt Mika die Anmeldung mit der PIN des Schlüssels.',
         action: 'Verifikation simulieren',
       },
       {
         title: 'Anmeldung bestätigt',
-        text: 'Der Sicherheitsschlüssel hat die Antwort signiert. Sein privater Schlüssel bleibt auf dem Schlüssel.',
+        text: 'Das Handy hat die signierte Antwort erhalten. Der private Teil des Passkeys bleibt auf dem Sicherheitsschlüssel.',
       },
     ],
     phone: [
@@ -76,7 +76,7 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
       },
       {
         title: 'Passkey freigeben',
-        text: 'Das Handy prüft Mikas Fingerabdruck lokal. Hier genügt ein Klick für die Simulation.',
+        text: 'Das Handy prüft Mikas Fingerabdruck lokal. Tippe unten, um diese Bestätigung nachzuspielen.',
         action: 'Fingerabdruck simulieren',
       },
       {
@@ -87,22 +87,22 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
     domain: [
       {
         title: 'Welche Adresse gehört zum Atelier?',
-        text: 'Mika hat einen Passkey für atelier.example. Wähle die Adresse, bei der dieser Passkey für die Anmeldung angeboten werden kann.',
+        text: 'Mika hat den Passkey bei atelier.example eingerichtet. Bei welcher der beiden Adressen kann der Browser ihn anbieten?',
       },
       {
         title: 'Genau, die Domain passt',
-        text: 'Der Browser prüft die Bindung an den Dienst. Die andere Adresse gehört zu einer anderen Domain und kann den Atelier-Passkey nicht für ihre Anmeldung anfordern.',
+        text: 'atelier.example ist die registrierte Domain. Bei atelier-help.example bietet der Browser Mikas Atelier-Passkey nicht an, selbst wenn die Seite vertraut aussieht.',
       },
     ],
     wrong:
-      'Schau auf den Teil vor «.example»: «atelier-help» ist eine andere Domain. Versuche es noch einmal.',
+      'Achte auf «-help» in der Adresse. Damit landest du bei einem anderen Dienst. Probier die andere Adresse.',
     kind: 'Speicherart',
     synced: 'Synchronisiert',
     bound: 'Gerätegebunden',
     syncJourney: [
       {
         title: 'Mika richtet einen Passkey ein',
-        text: 'Ein synchronisierender Anbieter schützt Mikas Passkey für das Atelier.',
+        text: 'Mika speichert den Atelier-Passkey in einem Passwortmanager, der mehrere Geräte unterstützt.',
         action: 'Passkey erstellen',
       },
       {
@@ -112,12 +112,12 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
       },
       {
         title: 'Der Anbieter synchronisiert',
-        text: 'Der Anbieter macht den Passkey auf weiteren unterstützten, berechtigten Geräten verfügbar. Die Voraussetzungen hängen vom Anbieter ab.',
+        text: 'Mikas Passwortmanager synchronisiert den Passkey mit dem Laptop. Welche Geräte man hinzufügen kann und wie man sie bestätigt, hängt vom Anbieter ab.',
         action: 'Anderes Gerät ausprobieren',
       },
       {
         title: 'Auch auf dem Laptop anmelden',
-        text: 'Hier ist Mikas Anbieter auf dem Laptop eingerichtet und entsperrt. Mika kann denselben synchronisierten Passkey verwenden.',
+        text: 'Mika entsperrt den Passwortmanager auf dem Laptop. Der Atelier-Passkey ist schon da und kann die Anmeldung bestätigen.',
       },
     ],
     boundJourney: [
@@ -133,7 +133,7 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
       },
       {
         title: 'Der Passkey bleibt auf dem Schlüssel',
-        text: 'Der Laptop erhält keine Kopie. Für eine Anmeldung an einem anderen Gerät nimmt Mika den Schlüssel mit.',
+        text: 'Der private Schlüssel bleibt in der Hardware. Wenn Mika den Laptop wechselt, reist der Sicherheitsschlüssel mit.',
         action: 'Anderes Gerät ausprobieren',
       },
       {
@@ -146,11 +146,11 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
   en: {
     title: 'Passkey playground',
     intro:
-      'Plug in a key, unlock a phone, or inspect an address. Every experiment is simulated and works without credentials.',
+      'Plug in Mika’s security key, check a web address, or try switching devices. Each experiment is a simulation with a fictional account.',
     choose: 'Choose an experiment',
     modules: ['Security key', 'Phone unlock', 'Find the genuine domain', 'Passkey journey'],
     simulation: 'Simulation',
-    drag: 'Drag the key to the laptop or use the button.',
+    drag: 'Drag the key to the laptop or choose “Insert the key”.',
     transport: 'Connection',
     usb: [
       {
@@ -160,28 +160,28 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
       },
       {
         title: 'Security key detected',
-        text: 'For this example key, Mika approves its use with a local PIN and a touch.',
+        text: 'Mika enters the key’s PIN and touches the contact on its surface to approve the sign-in.',
         action: 'Simulate verification',
       },
       {
         title: 'Sign-in confirmed',
-        text: 'The security key signed the response. Mika can unplug the key and put it away.',
+        text: 'The studio verified the signature. Mika can unplug the security key now. The passkey stays on it.',
       },
     ],
     nfc: [
       {
         title: 'Bring the key to the phone',
-        text: 'Both devices support NFC. Bring the security key near the back of the phone.',
+        text: 'Mika’s phone and key support NFC. This short-range radio connection works when the devices are close together.',
         action: 'Bring the key closer',
       },
       {
         title: 'Security key detected',
-        text: 'NFC carries the request over a short distance. For this example key, Mika confirms its use with the key’s PIN.',
+        text: 'The phone found the key over NFC. Now Mika enters the key’s PIN to approve the sign-in.',
         action: 'Simulate verification',
       },
       {
         title: 'Sign-in confirmed',
-        text: 'The security key signed the response. Its private key stays on the security key.',
+        text: 'The phone received a signed response. The private part of the passkey stays on the security key.',
       },
     ],
     phone: [
@@ -203,21 +203,21 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
     domain: [
       {
         title: 'Which address belongs to the studio?',
-        text: 'Mika registered a passkey for atelier.example. Choose the address where that passkey can be offered for sign-in.',
+        text: 'Mika created a passkey at atelier.example. At which of these addresses can the browser offer that passkey?',
       },
       {
         title: 'Exactly, the domain matches',
-        text: 'The browser checks the credential’s binding to the service. The other address belongs to a different domain and cannot request the studio passkey for its sign-in.',
+        text: 'atelier.example is the registered domain. At atelier-help.example, the browser won’t offer Mika’s studio passkey, even if the page looks familiar.',
       },
     ],
-    wrong: 'Look just before “.example”. “atelier-help” is a different domain. Try again.',
+    wrong: 'Notice “-help” in the address. That takes you to a different service. Try the other address.',
     kind: 'Storage type',
     synced: 'Synced',
     bound: 'Device-bound',
     syncJourney: [
       {
         title: 'Mika creates a passkey',
-        text: 'A provider that supports syncing protects Mika’s passkey for the studio.',
+        text: 'Mika saves the studio passkey in a password manager that works across devices.',
         action: 'Create passkey',
       },
       {
@@ -227,12 +227,12 @@ export const playground: Record<DemoLanguage, PlaygroundCopy> = {
       },
       {
         title: 'The provider syncs the passkey',
-        text: 'The provider makes the passkey available on other supported and authorised devices. The requirements depend on the provider.',
+        text: 'Mika’s password manager syncs the passkey to the laptop. Each provider has its own requirements for adding and authorising a new device.',
         action: 'Try another device',
       },
       {
         title: 'Sign in on the laptop too',
-        text: 'Here Mika’s provider is set up and unlocked on the laptop. Mika can use the same synced passkey.',
+        text: 'Mika unlocks the password manager on the laptop. The studio passkey is already there, ready to approve the sign-in.',
       },
     ],
     boundJourney: [

@@ -57,15 +57,15 @@ export const recovery: Entry[] = [
     id: 'stolen',
     title: words('Kann jemand meinen Passkey stehlen?', 'Could someone steal my passkey?'),
     body: words(
-      'Beim Anmelden erhält die Website eine Signatur. Sie bekommt den privaten Schlüssel nicht. Ein entsperrtes oder kompromittiertes Gerät, ein übernommenes Anbieterkonto oder eine gestohlene Sitzung bleiben Risiken. Schütze Gerätesperre, Updates und Wiederherstellungswege.',
-      'During sign-in, the website receives a signature. It never receives the private key. An unlocked or compromised device, a compromised provider account, or a stolen session can still put you at risk. Protect your screen lock and recovery methods, and keep devices updated.',
+      'Beim Anmelden erhält die Website eine Signatur. Sie bekommt den privaten Schlüssel nicht. Wer dein entsperrtes Gerät oder eine offene Sitzung kontrolliert, kann trotzdem Zugriff erhalten. Halte deine Geräte aktuell und schütze das Konto bei deinem Passkey-Anbieter.',
+      'During sign-in, the website receives a signature. It never receives the private key. Someone who controls your unlocked device or an active session may still get into the account. Keep devices updated and protect the account you use with your passkey provider.',
     ),
   },
   {
     id: 'no-fingerprint',
     title: words('Geht das auch ohne meinen Fingerabdruck?', 'Can it work without my fingerprint?'),
     body: words(
-      'Je nach Gerät bestätigt auch eine lokale PIN deine Identität. Die Website erfährt das Ergebnis der Prüfung, nicht deine PIN oder deinen Fingerabdruck. Wer dein Gerät und die PIN kennt, könnte sich damit anmelden.',
+      'Je nach Gerät bestätigt auch eine lokale PIN deine Identität. Die Website erfährt das Ergebnis der Prüfung, nicht deine PIN oder deinen Fingerabdruck. Wer dein Gerät besitzt und die PIN kennt, könnte sich damit anmelden.',
       'Depending on the device, a local PIN can also verify you. The website gets the verification result, never your PIN or fingerprint. Someone who has both your device and its PIN could be able to sign in.',
     ),
   },
@@ -99,7 +99,7 @@ export const roadmap = [
     ),
   ],
   [
-    words('Pilotieren', 'Run a pilot'),
+    words('Im Alltag testen', 'Run a pilot'),
     words(
       'Teste mit einer kleinen Gruppe typische Arbeitstage, gemeinsam genutzte Geräte und den Zugriff von unterwegs.',
       'Have a small group test ordinary workdays, shared devices, and sign-ins away from the office.',
@@ -113,7 +113,7 @@ export const roadmap = [
     ),
   ],
   [
-    words('Schrittweise ausrollen', 'Expand in stages'),
+    words('Teams einbeziehen', 'Expand in stages'),
     words(
       'Schule den Support, kommuniziere verständlich und nimm weitere Teams erst nach einem erfolgreichen Pilotversuch auf.',
       'Train support staff, explain the change in plain language, and bring in more teams after a successful pilot.',
@@ -122,8 +122,8 @@ export const roadmap = [
   [
     words('Auswerten', 'Review adoption'),
     words(
-      'Beobachte Anmeldeerfolg, Nutzung und Supportfälle. Reduziere schwächere Methoden erst, wenn der Ersatz zuverlässig funktioniert.',
-      'Review sign-in success, adoption, and support cases. Retire weaker methods once the replacement works reliably.',
+      'Wie oft klappt die Anmeldung beim ersten Versuch? Wie viele Anfragen erhält der Support? Reduziere schwächere Methoden, sobald die Alternative zuverlässig funktioniert.',
+      'Track successful sign-ins and support requests. Once the new method works reliably, start retiring weaker alternatives.',
     ),
   ],
 ] as const
@@ -144,8 +144,8 @@ export const faq: Entry[] = [
       'Does the website receive my biometrics?',
     ),
     body: words(
-      'Die Prüfung erfolgt lokal. Die Website erhält einen kryptografischen Nachweis über die Anmeldung. Dein Gesicht, Fingerabdruck und deine Geräte-PIN werden dabei nicht an die Website übertragen.',
-      'Verification happens locally. The website receives cryptographic evidence of the sign-in. Your face, fingerprint, and device PIN are not sent to the website during that process.',
+      'Bei Face ID prüft dein Gerät dein Gesicht. Bei der Anmeldung erhält die Website eine signierte Antwort. Dein Gesicht, dein Fingerabdruck und deine PIN bleiben auf dem Gerät.',
+      'With Face ID, your device checks your face. The website receives a signed response when you sign in. Your face, fingerprint, and PIN stay on your device.',
     ),
   },
   {

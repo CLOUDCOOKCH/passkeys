@@ -60,18 +60,19 @@ export function Playground({ lang }: { lang: DemoLanguage }) {
                 onClick={() => dispatch({ type: 'choose', experiment: id })}
               >
                 <Icon size={22} />
-                {copy.modules[index]}
+                <span>{copy.modules[index]}</span>
               </button>
             )
           })}
         </div>
         <div className="lab-panel" id="lab-content">
-          <div className="lab-drawing">
+          <div className="lab-drawing" data-experiment={experiment}>
             <div className="lab-svg-wrap">
               <PlaygroundDrawing
                 scene={experiment === 'hardware' ? connection : experiment}
                 step={step}
                 synced={storage === 'synced'}
+                wrongDomain={state.wrongDomain}
               />
               {dragActive && (
                 <>

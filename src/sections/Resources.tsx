@@ -9,6 +9,8 @@ import {
   CircleCheck,
   Fingerprint,
   KeyRound,
+  Lightbulb,
+  X,
   Printer,
   RotateCcw,
   Search,
@@ -32,28 +34,25 @@ const quizKey = 'passkeys.quiz.v1'
 function RecoveryMap({ lang }: Props) {
   return (
     <figure className="rs-map">
-      <svg viewBox="0 0 272 130" fill="none" aria-hidden="true">
-        <g stroke="#184f3d" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M63 69h50m55-1h39" strokeDasharray="3 7" />
-          <rect x="25" y="31" width="44" height="80" rx="9" fill="#fbf7d5" />
-          <path d="M39 38h16m-14 64h12" />
-          <path
-            d="M106 64a19 19 0 0 1 18-20 24 24 0 0 1 45 4 17 17 0 0 1-1 34h-44a18 18 0 0 1-18-18Z"
-            fill="#fffdf3"
-          />
-          <path d="m132 63 7 7 13-15" />
-          <circle cx="219" cy="57" r="15" fill="#d4c6ef" />
-          <circle cx="219" cy="54" r="4" />
-          <path d="M213 71v25l7 5 5-6-3-5 4-5-3-4V72" fill="#d4c6ef" />
+      <svg viewBox="0 0 320 144" fill="none" aria-hidden="true">
+        <g stroke="#225942" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M63 36h67q16 0 22 14l9 17q5 9 16 9h46M66 106h64q16 0 22-12l9-14" strokeDasharray="3 6" />
+          <rect x="25" y="10" width="37" height="52" rx="8" fill="#fff3c5" />
+          <path d="M38 16h11m-9 39h7" />
+          <g transform="rotate(-28 46 105)">
+            <rect x="27" y="95" width="37" height="20" rx="9" fill="#cfbce4" />
+            <circle cx="38" cy="105" r="3" /><path d="M63 99h14v12H63z" fill="#fffcf3" />
+          </g>
+          <rect x="217" y="37" width="79" height="68" rx="8" fill="#fcfff8" />
+          <path d="M218 52h77" /><circle cx="227" cy="45" r="1" /><circle cx="234" cy="45" r="1" />
+          <circle cx="257" cy="77" r="15" fill="#b9dfbe" /><path d="m250 77 5 5 9-11" />
         </g>
       </svg>
       <figcaption>
-        {
-          words(
-            'Ein zweiter Anmeldeweg hilft, wenn ein Gerät ausfällt.',
-            'A second way in can help when a device fails.',
-          )[lang]
-        }
+        {words(
+          'Ein Konto, zwei Anmeldewege: Registriere einen Ersatzschlüssel, solange dein Handy noch zur Hand ist.',
+          'One account, two ways in. Register a spare key while you still have your phone.',
+        )[lang]}
       </figcaption>
     </figure>
   )
@@ -80,8 +79,8 @@ export function Recovery({ lang }: Props) {
         <p className="rs-lead">
           {
             words(
-              'Ein neues Handy, ein verlorener Schlüssel, ein gesperrtes Konto. Wähle die Situation, die dich beschäftigt.',
-              'A new phone, a missing key, a locked account. Choose the situation you’re thinking about.',
+              'Handy verloren oder Laptop gewechselt? Hier findest du den nächsten Schritt für deine Situation.',
+              'Lost a phone or switched laptops? Find your situation and see how to get back into your account.',
             )[lang]
           }
         </p>
@@ -105,18 +104,18 @@ export function Recovery({ lang }: Props) {
 const businessCopy = {
   title: words('Passkeys im Unternehmen', 'Passkeys at work'),
   intro: words(
-    'Starte dort, wo Mitarbeitende täglich ein Passwort eingeben. Plane von Anfang an mit, wie sie nach einem Gerätewechsel wieder ins Konto kommen.',
-    'Start with a service where employees enter a password every day. Plan how they will get back into their accounts after a device change.',
+    'Wähle für den ersten Test einen Dienst, den dein Team täglich nutzt. Prüfe zwei Dinge: Wie leicht fällt die Anmeldung? Und wie kommt jemand nach einem Geräteverlust wieder ins Konto?',
+    'Pick a service your team uses every day. Test two things: how easily people can sign in, and how they get back into their accounts if they lose a device.',
   ),
   value: words('Was sich für dein Team ändert', 'What changes for your team'),
   benefit: words(
-    'Ein wiederverwendetes Passwort kann nach einem Datenleck auch andere Konten gefährden. Ein Passkey gehört zu einem bestimmten Dienst. Das senkt das Risiko von Phishing, und Mitarbeitende können sich mit ihrer vertrauten Gerätesperre anmelden. Ob weniger Supportfälle entstehen, lässt sich im Pilotversuch messen.',
-    'A reused password exposed in one breach can put other accounts at risk. A passkey belongs to a particular service. This reduces credential phishing and lets employees use a familiar device unlock. Measure in the pilot whether this reduces support requests.',
+    'Mitarbeitende geben die Anmeldung mit ihrer gewohnten Gerätesperre frei. Der Passkey gilt nur für den zugehörigen Dienst. Wer eine täuschend echte Kopie der Anmeldeseite öffnet, kann dort den Passkey des Dienstes nicht verwenden.',
+    'Employees approve sign-in the same way they unlock a device. Each passkey belongs to its service. Even if someone opens a convincing copy of the sign-in page, the browser will not offer that service’s passkey there.',
   ),
   controls: words('Geräte und Verantwortung', 'Devices and ownership'),
   policy: words(
-    'Lege fest, welche Anbieter auf verwalteten Geräten zulässig sind. Für privilegierte Rollen kann ein organisationsgebundener, gerätegebundener Sicherheitsschlüssel sinnvoll sein. Plane Ausgabe, Ersatz, Rückgabe und den Entzug des Zugriffs beim Austritt.',
-    'Decide which providers are allowed on managed devices. For privileged roles, an organisation-issued security key with a device-bound passkey can help meet assurance requirements. Plan for issuance, replacement, return, and offboarding.',
+    'Lege fest, wo Mitarbeitende geschäftliche Passkeys speichern dürfen. Für Admin-Konten kann die Organisation eigene FIDO2-Schlüssel ausgeben. Kläre, wer Ersatz ausgibt und wer beim Austritt Schlüssel zurücknimmt und Zugriffe sperrt.',
+    'Decide where people may store work passkeys. For admin accounts, the organisation may issue FIDO2 keys that keep each passkey on the hardware. Assign responsibility for replacing lost keys and revoking access when someone leaves.',
   ),
   roadmap: words('Einführung in fünf Schritten', 'A five-step rollout'),
   print: words('Kurzfassung drucken', 'Print summary'),
@@ -146,6 +145,7 @@ export function Business({ lang }: Props) {
           <p>{b.policy[lang]}</p>
         </div>
       </div>
+      <div className="rs-rollout">
       <h3 className="rs-roadmap-title">{b.roadmap[lang]}</h3>
       <ol className="rs-roadmap">
         {roadmap.map(([title, body], i) => (
@@ -156,6 +156,7 @@ export function Business({ lang }: Props) {
           </li>
         ))}
       </ol>
+      </div>
       <details className="rs-detail rs-entra" id="business-entra">
         <summary>
           Microsoft Entra ID
@@ -172,8 +173,8 @@ export function Business({ lang }: Props) {
         <p>
           {
             words(
-              'Die Registrierung und das Erzwingen einer Anmeldung sind getrennte Aufgaben. Prüfe die passende Authentifizierungsstärke in Conditional Access, teste Notfallzugang und Wiederherstellung und weite die Richtlinie erst dann aus.',
-              'Registration and enforcement are separate steps. Review the appropriate authentication strength in Conditional Access, test emergency access and recovery, then expand the policy.',
+              'Ein registrierter Passkey macht die Anmeldung per Passkey noch nicht zur Pflicht. Wähle dazu in Conditional Access die passende Authentifizierungsstärke. Teste Notfallzugang und Wiederherstellung, bevor du weitere Gruppen aufnimmst.',
+              'Registering a passkey does not make it mandatory. To require it, select the appropriate authentication strength in Conditional Access. Test emergency access and recovery before extending the policy to more groups.',
             )[lang]
           }
         </p>
@@ -266,16 +267,11 @@ export function Quiz({ lang }: Props) {
         <p className="rs-lead">
           {
             words(
-              'Teste dein Wissen mit sechs Fragen. Nach jeder Antwort erfährst du, warum sie stimmt oder was dahintersteckt.',
-              'Try six questions. After every answer, see why it works or what you missed.',
+              'Was sieht die Website beim Anmelden? Was hilft, wenn ein Schlüssel verloren geht? Wähle bei jeder der sechs Fragen eine Antwort und entdecke die Erklärung.',
+              'What does a website see when you sign in? What helps if a key goes missing? Choose one answer for each of the six questions to find out.',
             )[lang]
           }
         </p>
-        <div className="rs-quiz-meter" aria-hidden="true">
-          {questions.map((q, i) => (
-            <span key={q.prompt.en} className={i < state.answers.length ? 'filled' : ''} />
-          ))}
-        </div>
       </div>
       <div className="rs-quiz-board">
         {current ? (
@@ -283,6 +279,11 @@ export function Quiz({ lang }: Props) {
             <p id="quiz-count" className="rs-question-count">
               {words('Frage', 'Question')[lang]} {state.page + 1} / {questions.length}
             </p>
+            <div className="rs-quiz-meter" aria-hidden="true">
+              {questions.map((q, i) => (
+                <span key={q.prompt.en} className={i < state.answers.length ? 'filled' : i === state.page ? 'current' : ''} />
+              ))}
+            </div>
             <h3 ref={heading} aria-describedby="quiz-count" tabIndex={-1}>
               {current.prompt[lang]}
             </h3>
@@ -311,6 +312,8 @@ export function Quiz({ lang }: Props) {
                   <span className="rs-answer-mark" aria-hidden="true">
                     {picked !== undefined && i === current.answer ? (
                       <Check size={14} />
+                    ) : picked === i ? (
+                      <X size={14} />
                     ) : (
                       String.fromCharCode(65 + i)
                     )}
@@ -322,13 +325,14 @@ export function Quiz({ lang }: Props) {
             <div aria-live="polite" aria-atomic="true">
               {picked !== undefined && (
                 <div className="rs-feedback">
-                  <strong>
+                  <Lightbulb size={20} aria-hidden="true" />
+                  <div><strong>
                     {picked === current.answer
                       ? words('Richtig!', 'Correct!')[lang]
                       : words('Die richtige Antwort lautet: ', 'The correct answer is: ')[lang] +
                         current.choices[current.answer][lang]}
                   </strong>
-                  <p>{current.explanation[lang]}</p>
+                  <p>{current.explanation[lang]}</p></div>
                 </div>
               )}
             </div>
@@ -382,7 +386,7 @@ export function Resources({ lang }: Props) {
   useOpenAnchor()
   return (
     <section id="faq" aria-labelledby="faq-title" className="rs-section rs-reference">
-      <h2 id="faq-title">{words('Fragen und Antworten', 'Questions and answers')[lang]}</h2>
+      <div className="rs-faq-head"><h2 id="faq-title">{words('Fragen und Antworten', 'Questions and answers')[lang]}</h2>
       <label className="rs-search">
         <Search size={19} aria-hidden="true" />
         <input
@@ -396,7 +400,7 @@ export function Resources({ lang }: Props) {
           value={search}
           onChange={(event) => setSearch(event.currentTarget.value)}
         />
-      </label>
+      </label></div>
       <div role="status" className="rs-visually-hidden">
         {query &&
           (lang === 'de'
