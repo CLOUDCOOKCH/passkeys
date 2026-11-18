@@ -11,6 +11,7 @@ const navGroup: Record<string, string> = {
   options: 'setup',
   wizard: 'setup',
   setup: 'setup',
+  'microsoft-365': 'setup',
   recovery: 'paths',
   business: 'paths',
   playground: 'playground',
