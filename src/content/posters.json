@@ -1,7 +1,138 @@
 [
   {
+    "id": "drake",
+    "kind": "meme",
+    "lesson": "setup",
+    "de": {
+      "title": "Ganz mein Login.",
+      "description": "Die Ente im Daunenmantel hat eine klare Meinung zu Passwörtern. Ihr Fingerabdruck bleibt auf dem Gerät."
+    },
+    "en": {
+      "title": "My kind of login.",
+      "description": "A duck in a puffer jacket has a strong opinion about typing passwords. Its fingerprint stays on the device."
+    }
+  },
+  {
+    "id": "expanding-brain",
+    "kind": "meme",
+    "lesson": "recovery",
+    "de": {
+      "title": "Passkey-Erleuchtung.",
+      "description": "Vom ersten Aha bis zum getesteten Ersatzweg: Vier Erkenntnisse, ein immer helleres Gehirn."
+    },
+    "en": {
+      "title": "Passkey enlightenment.",
+      "description": "Four lightbulb moments, from hearing about passkeys to testing an independent way back in."
+    }
+  },
+  {
+    "id": "always-has-been",
+    "kind": "meme",
+    "lesson": "how",
+    "de": {
+      "title": "Schon immer.",
+      "description": "Zwei Astronauten, ein Fingerabdruck und eine Frage an das eigene Gerät."
+    },
+    "en": {
+      "title": "Always has.",
+      "description": "Two astronauts look back at Earth and discover where a fingerprint stays."
+    }
+  },
+  {
+    "id": "one-does-not",
+    "kind": "meme",
+    "lesson": "playground",
+    "de": {
+      "title": "Man kann nicht einfach …",
+      "description": "Die Waldläuferin erklärt mit einer Geste, warum die falsche Website leer ausgeht."
+    },
+    "en": {
+      "title": "One does not simply…",
+      "description": "A woodland ranger has a point to make about passkeys and fake websites."
+    }
+  },
+  {
+    "id": "theyre-the-same",
+    "kind": "meme",
+    "lesson": "playground",
+    "de": {
+      "title": "Das ist doch dasselbe Bild.",
+      "description": "Zwei Seiten sehen gleich aus. Der Browser sieht den Unterschied in der Adresse."
+    },
+    "en": {
+      "title": "They’re the same picture.",
+      "description": "The pages look identical. The browser can tell their addresses apart."
+    }
+  },
+  {
+    "id": "change-my-mind",
+    "kind": "meme",
+    "lesson": "recovery",
+    "de": {
+      "title": "Ändere meine Meinung.",
+      "description": "Kaffee, ein Klapptisch und eine These zum besten Zeitpunkt für den Ersatzschlüssel."
+    },
+    "en": {
+      "title": "Change my mind.",
+      "description": "One folding table, a small coffee, and a strong opinion about spare security keys."
+    }
+  },
+  {
+    "id": "stonks",
+    "kind": "meme",
+    "lesson": "compare",
+    "de": {
+      "title": "Stonks: Mein Passwortdepot",
+      "description": "Ein Börsenmakler feiert jedes Passwort, das er sich dank Passkey sparen kann."
+    },
+    "en": {
+      "title": "Stonks: My password portfolio",
+      "description": "A stockbroker celebrates all the passwords a passkey can save him from inventing."
+    }
+  },
+  {
+    "id": "spider-pointing",
+    "kind": "meme",
+    "lesson": "options",
+    "de": {
+      "title": "Wer von euch hat meinen Passkey?",
+      "description": "Ein Handy und ein Laptop zeigen aufeinander. Bei einem synchronisierten Passkey können beide Geräte recht haben."
+    },
+    "en": {
+      "title": "Which one of you has my passkey?",
+      "description": "A phone and a laptop point at each other. When a passkey syncs, both devices can be right."
+    }
+  },
+  {
+    "id": "is-this-a-pigeon",
+    "kind": "meme",
+    "lesson": "how",
+    "de": {
+      "title": "Ist das etwa mein Website-Passwort?",
+      "description": "Ein Forscher zeigt auf einen Schmetterling mit der Aufschrift «Geräte-PIN»."
+    },
+    "en": {
+      "title": "Is this a website password?",
+      "description": "A researcher points at a butterfly labelled “My device PIN” and asks if it’s a website password."
+    }
+  },
+  {
+    "id": "waiting-skeleton",
+    "kind": "meme",
+    "lesson": "setup",
+    "de": {
+      "title": "Immer noch im Posteingang",
+      "description": "Ein Skelett wartet vor einem alten Bildschirm auf die E-Mail zum Passwort-Reset."
+    },
+    "en": {
+      "title": "Still checking my inbox",
+      "description": "A skeleton at a cobwebbed monitor waits for the password reset email."
+    }
+  },
+  {
     "id": "only-here",
     "kind": "guide",
+    "lesson": "how",
     "de": {
       "title": "Dein Fingerabdruck bleibt bei dir",
       "description": "Das Gerät prüft den Fingerabdruck. Die Website erhält eine signierte Antwort."
@@ -9,12 +140,12 @@
     "en": {
       "title": "Your fingerprint stays with you",
       "description": "Your device checks your fingerprint. The website receives a signed response."
-    },
-    "lesson": "how"
+    }
   },
   {
     "id": "right-site",
     "kind": "guide",
+    "lesson": "playground",
     "de": {
       "title": "Nur auf der richtigen Website",
       "description": "Eine Website kann gleich aussehen. Dein Passkey ist an den echten Dienst gebunden."
@@ -22,12 +153,12 @@
     "en": {
       "title": "Only on the right site",
       "description": "Two websites can look identical. Your passkey belongs to the real service."
-    },
-    "lesson": "playground"
+    }
   },
   {
     "id": "this-is-fine",
     "kind": "meme",
+    "lesson": "setup",
     "de": {
       "title": "Alles bestens.",
       "description": "Die Bürotaube trinkt Kaffee. Rundherum stapeln sich die Passwort-Resets."
@@ -35,12 +166,12 @@
     "en": {
       "title": "This is fine.",
       "description": "An office pigeon enjoys a coffee while password resets pile up around it."
-    },
-    "lesson": "setup"
+    }
   },
   {
     "id": "two-buttons",
     "kind": "meme",
+    "lesson": "setup",
     "de": {
       "title": "Zwei Knöpfe. Eine Entscheidung.",
       "description": "Schon wieder das Passwort zurücksetzen? Der zweite Knopf hat einen anderen Vorschlag."
@@ -48,7 +179,6 @@
     "en": {
       "title": "Two buttons. One decision.",
       "description": "Reset the password again? The second button has a different suggestion."
-    },
-    "lesson": "setup"
+    }
   }
 ]

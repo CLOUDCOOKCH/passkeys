@@ -150,3 +150,34 @@
 .poster-mount:is(:hover, :focus-visible) .poster-preview-icon {
   background: #dceedd;
 }
+.library-browse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0 0 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.library-browse p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+.library-browse button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 6px 13px;
+  border: 1px solid #b5c8b8;
+  border-radius: 99px;
+  background: #f9faf5;
+  font-size: 0.85rem;
+  font-weight: 670;
+  color: #224d3e;
+}
+.library-browse button:is(:hover, :focus-visible) {
+  background: #deecdf;
+}
