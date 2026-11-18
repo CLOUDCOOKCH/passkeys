@@ -22,6 +22,7 @@ import {
   type ProviderId,
 } from '../content/providers'
 import { recommend, type Platform } from '../lib/recommend'
+import { Microsoft365 } from './Microsoft365'
 import './options.css'
 
 type Props = { lang: Language }
@@ -591,6 +592,12 @@ function Tutorial({ lang }: Props) {
           ? 'Wähle deinen Speicherort. Folge der Anleitung auf der Website, bei der du dich anmelden möchtest. Die Anzeige kann je nach Gerät und Browser abweichen.'
           : 'Pick your storage provider. Follow the steps on the website you want to sign in to. What you see may vary by device and browser.'}
       </p>
+      <div className="op-links">
+        <a href="#microsoft-365">
+          {de ? 'Sicherheitsschlüssel für Microsoft 365 einrichten' : 'Set up a security key for Microsoft 365'}
+          <ArrowRight size={16} aria-hidden="true" />
+        </a>
+      </div>
       <div className="op-tutorial-grid">
         <nav className="op-tutorial-index" aria-label={de ? 'Anleitungen' : 'Walkthroughs'}>
           {tutorials.map((p) => (
@@ -720,6 +727,7 @@ export function Options({ lang }: Props) {
       <Explorer lang={lang} />
       <Wizard lang={lang} />
       <Tutorial lang={lang} />
+      <Microsoft365 lang={lang} />
     </>
   )
 }

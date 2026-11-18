@@ -579,3 +579,21 @@
     max-width: 9.6rem;
   }
 }
+
+.m365-stages {
+  margin: 0;
+  padding-inline-start: 1.55rem;
+  list-style: decimal;
+}
+.m365-stages > li {
+  padding-inline-start: 0.4rem;
+}
+.m365-stages > li::marker {
+  color: var(--op-teal);
+  font-weight: 700;
+}
+.m365-stages > li + li {
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--op-line);
+}

@@ -143,6 +143,10 @@ export function Business({ lang }: Props) {
         <div>
           <h3>{b.controls[lang]}</h3>
           <p>{b.policy[lang]}</p>
+          <a className="rs-link" href="#microsoft-365">
+            {words('Microsoft 365 mit einem Sicherheitsschlüssel einrichten', 'Set up Microsoft 365 with a security key')[lang]}
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </div>
       </div>
       <div className="rs-rollout">
