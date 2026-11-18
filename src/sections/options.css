@@ -597,3 +597,36 @@
   padding-top: 1.4rem;
   border-top: 1px solid var(--op-line);
 }
+
+.m365-hub > section {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+}
+.m365-index {
+  display: grid;
+  border-top: 1px solid var(--op-line);
+}
+.m365-index a, .m365-symptoms summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-height: 48px;
+  font-weight: 660;
+  line-height: 1.4;
+}
+.m365-index a {
+  text-decoration: none;
+  padding: .65rem .25rem;
+  border-bottom: 1px solid var(--op-line);
+  color: var(--op-teal);
+}
+.m365-index a:hover { text-decoration: underline; }
+.m365-hub .first-day-card { margin-top: 1.5rem; }
+.m365-stages h4 { margin-bottom: .75rem; }
+.m365-symptoms { border-top: 1px solid var(--op-line); }
+.m365-symptoms details { border-bottom: 1px solid var(--op-line); }
+.m365-symptoms summary { padding: .85rem .2rem; list-style: none; }
+.m365-symptoms summary::-webkit-details-marker { display: none; }
+.m365-symptoms svg, .m365-index svg { flex-shrink: 0; }
+.m365-symptoms details[open] summary { color: var(--op-teal); }
+.m365-symptoms details[open] svg { transform: rotate(180deg); }

@@ -1,0 +1,43 @@
+.first-day-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 1.8rem);
+  padding: clamp(1rem, 2vw, 1.75rem);
+  border: 1px solid #d4ceb8;
+  border-radius: 12px;
+  background: #f4f0e2;
+}
+.first-day-card img {
+  width: clamp(58px, 7vw, 84px);
+  height: auto;
+  flex: none;
+  transform: rotate(-4deg);
+  border: 1px solid #d9d7cb;
+  box-shadow: 2px 4px 6px #46371f18;
+}
+.first-day-card h3, .op-section .first-day-card h3 {
+  font-size: 1.15rem;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+  font-weight: 720;
+  margin: 0 0 .35rem;
+}
+.first-day-card p, .op-section .first-day-card p {
+  font-size: .9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+.first-day-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 36px;
+  margin-top: .4rem;
+  color: #215740;
+  font-weight: 710;
+  font-size: .9rem;
+  text-decoration: underline;
+}
+.poster-library .first-day-card { margin-top: 2.5rem; }
+
+.first-day-links { display: flex; flex-wrap: wrap; gap: 0 1rem; }

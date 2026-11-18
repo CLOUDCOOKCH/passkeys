@@ -1,0 +1,148 @@
+.m365-auth {
+  scroll-margin-top: 6rem;
+  padding: clamp(1.25rem, 3.6vw, 3rem);
+  border: 1px solid var(--op-line, #cbd8cd);
+  border-radius: 16px;
+  background: #f4f7ee;
+  color: var(--op-ink, #20392f);
+}
+.m365-auth-head {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 2vw, 1.65rem);
+}
+.m365-auth-head > div {
+  min-width: 0;
+}
+.m365-auth-head h3 {
+  margin: 0 0 0.65rem;
+  max-width: 32ch;
+}
+.m365-auth-head p {
+  max-width: 75ch;
+}
+.m365-auth-symbol {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  color: #205e49;
+  background: #dcecd8;
+  border-radius: 50%;
+}
+.m365-auth .m365-auth-phone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  margin: 1.25rem 0 1.5rem;
+}
+.m365-auth-phone p,
+.m365-auth-test #m365-auth-target {
+  margin: 0;
+  font-weight: 660;
+}
+.m365-auth-switch {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.m365-auth-switch button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  line-height: 1.25;
+  padding: 0.5rem 0.95rem;
+  font: inherit;
+  font-weight: 620;
+  color: #20392f;
+  background: #fffef9;
+  border: 1px solid #a4b9a7;
+  border-radius: 100px;
+}
+.m365-auth-switch button[aria-pressed='true'] {
+  color: white;
+  background: #244b3b;
+  border-color: #244b3b;
+}
+.m365-auth-switch button:hover:not([aria-pressed='true']) {
+  background: #e1edde;
+}
+.m365-auth-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  border-top: 1px solid #c7d4c7;
+  padding-top: 1.25rem;
+}
+.m365-auth-columns h4 {
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+.m365-auth-register strong {
+  font-weight: 640;
+}
+.m365-auth-test .m365-auth-switch {
+  margin: 0.55rem 0 1rem;
+}
+.m365-auth-columns ol {
+  list-style: decimal;
+  padding: 0 0 0 1.55rem;
+  margin: 0.9rem 0;
+}
+.m365-auth-columns li {
+  line-height: 1.62;
+  padding-left: 0.2rem;
+}
+.m365-auth-columns li + li {
+  margin-top: 0.65rem;
+}
+.m365-auth-columns li::marker {
+  font-weight: 700;
+  color: #336246;
+}
+.m365-auth-sources {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin-top: 0.8rem;
+  font-size: 0.88rem;
+}
+.m365-auth-sources span {
+  font-weight: 700;
+}
+.m365-auth-sources a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: #235941;
+  text-decoration: underline;
+}
+.m365-auth-sources small {
+  color: #485d50;
+  font-size: 0.8rem;
+}
+@media (max-width: 790px) {
+  .m365-auth-columns {
+    grid-template-columns: 1fr;
+  }
+  .m365-auth-test {
+    border-top: 1px solid #c7d4c7;
+    padding-top: 1.25rem;
+  }
+}
+@media (max-width: 460px) {
+  .m365-auth-symbol {
+    width: 2.7rem;
+    height: 2.7rem;
+  }
+  .m365-auth-symbol svg {
+    width: 26px;
+  }
+}
