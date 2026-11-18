@@ -1,0 +1,447 @@
+.rs-section {
+  width: min(1180px, calc(100% - 2 * clamp(20px, 5vw, 72px)));
+  margin-inline: auto;
+  padding-block: clamp(3.75rem, 7.5vw, 7rem);
+  scroll-margin-top: 5rem;
+  color: #20392e;
+  border-top: 1px solid #d9dfd4;
+}
+.rs-section h2 {
+  font-size: clamp(2.1rem, 4.6vw, 4.1rem);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  font-weight: 740;
+  margin: 0 0 1.2rem;
+  text-wrap: balance;
+}
+.rs-section h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin: 0 0 0.85rem;
+  font-weight: 650;
+}
+.rs-section p {
+  line-height: 1.65;
+  margin: 0 0 0.9rem;
+}
+.rs-section .rs-lead {
+  color: #465b4e;
+  font-size: 1.06rem;
+  max-width: 63ch;
+}
+.rs-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: start;
+}
+.rs-map {
+  width: min(100%, 300px);
+  margin: 2rem 0 0;
+  padding: 1.15rem 1.5rem 1.2rem;
+  border-radius: 1rem;
+  background: #e1eddb;
+}
+.rs-map svg {
+  display: block;
+  width: 100%;
+}
+.rs-map figcaption {
+  color: #32533d;
+  font-size: 0.89rem;
+  font-weight: 550;
+  text-wrap: balance;
+}
+.rs-detail {
+  border-bottom: 1px solid #cdd5c9;
+  scroll-margin-top: 5rem;
+}
+.rs-detail summary {
+  padding: 1rem 0;
+  min-height: 48px;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 620;
+  line-height: 1.4;
+}
+.rs-detail summary::-webkit-details-marker {
+  display: none;
+}
+.rs-detail summary > svg {
+  flex: 0 0 auto;
+}
+.rs-detail[open] > summary svg {
+  transform: rotate(180deg);
+}
+.rs-detail summary:hover {
+  color: #227044;
+}
+.rs-detail p {
+  color: #40534a;
+  max-width: 68ch;
+}
+.rs-link,
+.rs-button,
+.rs-text-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font: inherit;
+  cursor: pointer;
+}
+.rs-link,
+.rs-text-action {
+  color: #225d40;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.rs-button {
+  font-size: 0.93rem;
+  font-weight: 650;
+  padding: 0.75rem 1.2rem;
+  min-height: 44px;
+  border-radius: 2rem;
+  border: 1px solid #194f34;
+  color: #fff;
+  background: #194f34;
+  line-height: 1.25;
+}
+.rs-button:hover {
+  background: #103b25;
+}
+.rs-business-head {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: start;
+}
+.rs-business-head .rs-button {
+  flex-shrink: 0;
+}
+.rs-business-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+  margin-block: 1.5rem;
+}
+.rs-roadmap {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+  margin: 1.3rem 0 2rem;
+  padding: 0;
+  gap: 1rem;
+}
+.rs-roadmap li {
+  border-top: 1px solid #95ad97;
+  padding-top: 1rem;
+}
+.rs-roadmap li > span {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.86rem;
+  font-weight: 700;
+  background: #dcebd5;
+  color: #275b39;
+}
+.rs-roadmap h4 {
+  font-weight: 680;
+  line-height: 1.35;
+  margin: 0.75rem 0 0.45rem;
+}
+.rs-roadmap li p {
+  font-size: 0.92rem;
+}
+.rs-entra {
+  border-top: 1px solid #cdd5c9;
+}
+.rs-entra .rs-link {
+  margin-bottom: 1rem;
+}
+.rs-quiz-meter {
+  display: flex;
+  width: min(65%, 220px);
+  gap: 4px;
+  margin: 1.5rem 0;
+}
+.rs-quiz-meter span {
+  display: block;
+  flex: 1;
+  height: 4px;
+  background: #d9dfd4;
+  border-radius: 2px;
+}
+.rs-quiz-meter .filled {
+  background: #26734a;
+}
+.rs-quiz-board {
+  background: #eee8f6;
+  color: #30283d;
+  padding: clamp(1.25rem, 3.5vw, 2.6rem);
+  border-radius: 1rem;
+}
+.rs-question-count {
+  font-size: 0.88rem;
+  font-weight: 630;
+  font-variant-numeric: tabular-nums;
+  color: #5b486b;
+}
+.rs-answers {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.2rem 0;
+}
+.rs-answers button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: start;
+  border: 1px solid #bfb2ce;
+  border-radius: 0.7rem;
+  min-height: 48px;
+  background: #fffcff;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.rs-answers button:hover:not([aria-disabled='true']) {
+  border-color: #635077;
+}
+.rs-answers button.right {
+  color: #194d2d;
+  border-color: #608967;
+  background: #e3eedc;
+}
+.rs-answers button.wrong {
+  border-color: #976048;
+  background: #fae6d7;
+}
+.rs-answer-mark {
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  width: 1.45rem;
+  height: 1.45rem;
+  font-size: 0.74rem;
+  font-weight: 650;
+  flex-shrink: 0;
+}
+.rs-quiz-result p {
+  margin-block: 1rem;
+}
+.rs-result-art {
+  width: 5rem;
+  height: 5rem;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: #e1efc9;
+  color: #24503b;
+  border-radius: 50%;
+  margin-bottom: 1.2rem;
+}
+.rs-result-check {
+  position: absolute;
+  bottom: -0.15rem;
+  right: -0.2rem;
+  fill: #fbebac;
+  border-radius: 50%;
+}
+.rs-feedback {
+  font-size: 0.95rem;
+}
+.rs-feedback strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.rs-search {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid #9daa9d;
+  border-radius: 0.6rem;
+  max-width: 38rem;
+  padding: 0 0.9rem;
+  background: #fffefa;
+}
+.rs-search:focus-within {
+  outline: 2px solid #246346;
+  outline-offset: 2px;
+}
+.rs-search input {
+  min-width: 0;
+  flex-grow: 1;
+  min-height: 48px;
+  font: inherit;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #20392e;
+}
+.rs-search input::placeholder {
+  color: #536454;
+}
+.rs-ref-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 5vw, 5rem);
+  margin-top: 2rem;
+}
+.rs-sources {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid #cdd5c9;
+}
+.rs-sources h3,
+.rs-sources p {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.rs-sources > div {
+  display: flex;
+  gap: 0.6rem 1.45rem;
+  flex-wrap: wrap;
+}
+.rs-sources p {
+  margin-top: 1.5rem;
+  color: #46574b;
+  font-size: 0.88rem;
+}
+.rs-sources p svg {
+  flex-shrink: 0;
+}
+.rs-no-results {
+  margin-top: 1rem;
+}
+.rs-text-action {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.rs-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.rs-print {
+  display: none;
+}
+@media (max-width: 820px) {
+  .rs-roadmap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 680px) {
+  .rs-columns,
+  .rs-ref-grid,
+  .rs-business-notes {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+  .rs-map {
+    width: min(100%, 275px);
+    margin-top: 1rem;
+  }
+  .rs-business-head {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .rs-business-head .rs-button {
+    justify-self: start;
+  }
+  .rs-roadmap {
+    grid-template-columns: 1fr;
+  }
+  .rs-roadmap li {
+    position: relative;
+    padding-left: 2.7rem;
+  }
+  .rs-roadmap li > span {
+    position: absolute;
+    left: 0;
+    top: 1rem;
+  }
+  .rs-roadmap h4 {
+    margin-top: 0.15rem;
+  }
+}
+@page {
+  margin: 15mm;
+}
+@media print {
+  body:has(> .rs-print) > :not(.rs-print) {
+    display: none !important;
+  }
+  body:has(> .rs-print),
+  html:has(.rs-print) {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body > .rs-print {
+    display: block;
+    color: #16392c;
+    font:
+      10pt/1.4 Arial,
+      sans-serif;
+    background: white;
+  }
+  .rs-print-brand {
+    display: flex;
+    align-items: center;
+    gap: 5pt;
+    font-size: 13pt;
+    font-weight: 700;
+  }
+  .rs-print h1 {
+    font:
+      bold 26pt/1.1 Arial,
+      sans-serif;
+    margin: 11pt 0 5pt;
+  }
+  .rs-print h2 {
+    font:
+      bold 13pt/1.2 Arial,
+      sans-serif;
+    margin: 10pt 0 3pt;
+  }
+  .rs-print p {
+    margin: 0 0 5pt;
+  }
+  .rs-print ol {
+    padding-left: 18pt;
+    list-style: decimal;
+    margin: 6pt 0;
+  }
+  .rs-print li {
+    margin-bottom: 5pt;
+    break-inside: avoid;
+  }
+  .rs-print .rs-print-source {
+    border-top: 1px solid #697e72;
+    padding-top: 5pt;
+    margin-top: 10pt;
+  }
+  .rs-print a {
+    color: inherit;
+    text-decoration: underline;
+    font-size: 9pt;
+  }
+}
