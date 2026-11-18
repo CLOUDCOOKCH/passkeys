@@ -33,7 +33,9 @@ Before a first browser test run, use `npx playwright install --with-deps chromiu
 2. Merge the site and workflow into `main`. The workflow runs lint, unit tests, strict type checking, a production build and browser tests before deploying the validated `dist/` artifact.
 3. Open the [Pages workflow](https://github.com/CLOUDCOOKCH/passkeys/actions/workflows/deploy.yml) and follow the `github-pages` environment link in the successful deployment. To deploy the same revision again, select **Run workflow** on `main`.
 
-The workflow derives the project site URL from the repository owner and name. For this repository the URL is `https://cloudcookch.github.io/passkeys/`. For a custom domain, set the repository Actions variables `VITE_SITE_ORIGIN` to the HTTPS origin and `VITE_BASE_PATH` to the site directory, including leading and trailing slashes. For example, use `https://learn.example.org` and `/` for a domain root. Configure the domain and DNS in Pages settings and rebuild. Set these same environment variables when building and previewing locally.
+On a deployment from `main`, the workflow reads the URL configured in **Settings → Pages** before Vite builds the site. The custom domain `https://passkey.cloudcook.ch/` uses `/` as its base path. The project URL `https://cloudcookch.github.io/passkeys/` uses `/passkeys/`. Both language pages, their assets and their canonical URLs use the same base. After changing the domain in Pages settings, run the workflow again on `main` to rebuild the artifact.
+
+To preview a domain-root build locally, use `VITE_BASE_PATH=/ VITE_SITE_ORIGIN=https://passkey.cloudcook.ch npm run build` and `VITE_BASE_PATH=/ npm run preview`. Pull-request builds can use the repository Actions variables `VITE_BASE_PATH` and `VITE_SITE_ORIGIN` to preview a particular configuration.
 
 ## Content and licensing
 
