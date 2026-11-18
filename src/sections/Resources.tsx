@@ -139,6 +139,10 @@ export function Business({ lang }: Props) {
         <div>
           <h3>{b.value[lang]}</h3>
           <p>{b.benefit[lang]}</p>
+          <a className="rs-link" href="#playground-workshop">
+            {words('Live-Workshop mit dem Team starten', 'Run a live workshop with your team')[lang]}
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </div>
         <div>
           <h3>{b.controls[lang]}</h3>

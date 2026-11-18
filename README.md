@@ -8,6 +8,8 @@ The Microsoft 365 guide at `#microsoft-365` includes a fictional registration an
 
 The playground at `#playground` lets visitors sign and change a message with a temporary browser-generated key, verify it and save the resulting trace as SVG. Four companion experiments cover hardware keys, phone unlock, domains and device changes.
 
+Open `#playground-missions` to replay a lost-phone scenario or investigate three help-desk tickets. At `#playground-workshop`, a facilitator can project a dilemma, take a show of hands, reveal the consequences and prepare a first-day card for the team. Session progress stays in the current page.
+
 ## Run locally
 
 Use Node.js 24 and npm. From the repository root:
