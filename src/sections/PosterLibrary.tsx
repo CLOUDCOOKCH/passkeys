@@ -1,4 +1,5 @@
-import { Download, Expand, Printer } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Download, Expand, Minus, Plus, Printer } from 'lucide-react'
 import posters from '../content/posters.json'
 import type { Lang } from '../i18n/home'
 import './posters.css'
@@ -32,8 +33,32 @@ const copy = {
   },
 } as const
 
+const featuredCount = 4
+function linkedPoster() {
+  return posters.find((poster) => '#poster-' + poster.id === window.location.hash)
+}
+
 export function PosterLibrary({ lang }: { lang: Lang }) {
   const t = copy[lang]
+  const [expanded, setExpanded] = useState(() => Boolean(linkedPoster()))
+  useEffect(() => {
+    function revealLinkedPoster() {
+      const poster = linkedPoster()
+      if (!poster) return
+      setExpanded(true)
+      requestAnimationFrame(() => document.getElementById('poster-' + poster.id)?.scrollIntoView())
+    }
+    window.addEventListener('hashchange', revealLinkedPoster)
+    return () => window.removeEventListener('hashchange', revealLinkedPoster)
+  }, [])
+  const visiblePosters = expanded ? posters : posters.slice(0, featuredCount)
+  const toggleLabel = expanded
+    ? lang === 'de'
+      ? 'Auswahl anzeigen'
+      : 'Show featured posters'
+    : lang === 'de'
+      ? `Alle ${posters.length} Poster anzeigen`
+      : `Show all ${posters.length} posters`
   return (
     <section id="library" aria-labelledby="library-title" className="poster-library">
       <div className="wrap">
@@ -41,8 +66,23 @@ export function PosterLibrary({ lang }: { lang: Lang }) {
           <h2 id="library-title">{t.title}</h2>
           <p>{t.intro}</p>
         </div>
-        <div className="poster-catalogue">
-          {posters.map((poster) => {
+        <div className="library-browse">
+          <p aria-live="polite">
+            {lang === 'de'
+              ? `${visiblePosters.length} von ${posters.length} Motiven`
+              : `${visiblePosters.length} of ${posters.length} designs`}
+          </p>
+          <button
+            type="button"
+            aria-expanded={expanded}
+            aria-controls="poster-catalogue"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? <Minus size={15} /> : <Plus size={15} />} {toggleLabel}
+          </button>
+        </div>
+        <div className="poster-catalogue" id="poster-catalogue">
+          {visiblePosters.map((poster) => {
             const { title, description } = poster[lang]
             const path = import.meta.env.BASE_URL + 'posters/' + lang + '/' + poster.id
             return (

@@ -2,19 +2,47 @@
 import QRCode from 'qrcode'
 import { loadEnv } from 'vite'
 import { chromium } from '@playwright/test'
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { guideDesigns } from './guide.mjs'
 import { buttonsDesign } from './buttons.mjs'
 import { fineDesign } from './fine.mjs'
+import { setA } from './set-a.mjs'
+import { setB } from './set-b.mjs'
+import { setC } from './set-c.mjs'
+import { setD } from './set-d.mjs'
+import { setE } from './set-e.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = resolve(here, '../..')
 const output = join(root, 'public/posters')
 const media = join(output, 'media')
-const catalogue = JSON.parse(await readFile(join(root, 'src/content/posters.json'), 'utf8'))
-const designs = [...guideDesigns, buttonsDesign, fineDesign]
+const originalCopy = JSON.parse(await readFile(join(here, 'originals.json'), 'utf8'))
+const originals = [...guideDesigns, fineDesign, buttonsDesign].map((design) => ({
+  ...originalCopy.find((poster) => poster.id === design.id),
+  ...design,
+}))
+const additions = [...setA, ...setB, ...setC, ...setD, ...setE]
+const featured = ['drake', 'expanding-brain', 'always-has-been', 'one-does-not']
+const designs = [
+  ...featured.map((id) => additions.find((design) => design.id === id)),
+  ...additions.filter((design) => !featured.includes(design.id)),
+  ...originals,
+]
+// The website imports only card metadata. Artwork and generation code stay out of its JS bundle.
+const summary = ({ title, description }) => ({ title, description })
+const catalogue = designs.map(({ id, kind, lesson, de, en }) => ({
+  id,
+  kind,
+  lesson,
+  de: summary(de),
+  en: summary(en),
+}))
+const selected = new Set(process.argv.slice(2))
+for (const id of selected) {
+  if (!designs.some((design) => design.id === id)) throw new Error('Unknown poster: ' + id)
+}
 await mkdir(media, { recursive: true })
 const fonts = [
   ['@fontsource-variable/manrope', 'files/manrope-latin-wght-normal.woff2', 'manrope.woff2'],
@@ -33,7 +61,7 @@ const origin = new URL(env.VITE_SITE_ORIGIN || 'https://cloudcookch.github.io')
 if (!['https:', 'http:'].includes(origin.protocol))
   throw new Error('Use an HTTP(S) origin for printed lesson links')
 const site = new URL((env.VITE_BASE_PATH || '/passkeys/').replace(/\/?$/, '/'), origin.origin)
-const artworkNames = ['buttons.webp', 'fine.webp']
+const artworkNames = (await readdir(media)).filter((name) => /\.(webp|jpg)$/.test(name))
 const art = (name) => {
   if (!artworkNames.includes(name)) throw new Error('Unknown poster illustration: ' + name)
   return '../media/' + name
@@ -84,6 +112,7 @@ try {
   for (const lang of ['de', 'en']) {
     await mkdir(join(output, lang), { recursive: true })
     for (const poster of catalogue) {
+      if (selected.size && !selected.has(poster.id)) continue
       const design = designs.find((entry) => entry.id === poster.id)
       if (!design) throw new Error('Missing poster: ' + poster.id)
       const stem = join(output, lang, poster.id)
@@ -118,6 +147,7 @@ try {
       console.log('Rendered ' + lang + '/' + poster.id)
     }
   }
+  await writeFile(join(root, 'src/content/posters.json'), JSON.stringify(catalogue, null, 2) + '\n')
 } finally {
   await browser.close()
 }

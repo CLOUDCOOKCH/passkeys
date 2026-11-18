@@ -16,8 +16,8 @@ Use a short imperative commit subject. In the pull request, explain what learner
 
 ## Poster artwork and exports
 
-The poster library uses committed files in `public/posters/`, so Pages serves downloads without a generator or external service. Edit the bilingual catalogue in `src/content/posters.json` and the 800 × 1000 designs in `scripts/posters/`. Original meme illustrations and the print-page fonts live in `public/posters/media/`.
+The poster library uses committed files in `public/posters/`, so Pages serves downloads without a generator or external service. Edit the 800 × 1000 designs and bilingual card copy in `scripts/posters/`. The generator writes the lightweight website catalogue to `src/content/posters.json`. Original meme illustrations and the print-page fonts live in `public/posters/media/`.
 
-Run `npm ci`, install Chromium with `npx playwright install chromium`, then run `npm run posters`. If using system Chromium, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable path. This renders a 1080 × 1350 PNG, a small WebP preview, a single A4 PDF and a standalone print page for each language and design. Inspect the exports and commit them alongside their sources.
+Run `npm ci`, install Chromium with `npx playwright install chromium`, then run `npm run posters`. If using system Chromium, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable path. This renders a 1080 × 1350 PNG, a small WebP preview, a single A4 PDF and a standalone print page for each language and design. To refresh selected designs, pass their IDs, for example `npm run posters -- drake expanding-brain`. Inspect the exports and commit them alongside their sources.
 
 The A4 editions carry a QR code linking to the corresponding lesson. Set `VITE_SITE_ORIGIN` and `VITE_BASE_PATH` before regenerating for another domain or fork. Existing paper copies retain their original destination.

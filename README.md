@@ -2,7 +2,7 @@
 
 An interactive guide to passwordless sign-in for individuals, organisations, and IT teams. Explore a simulated sign-in, compare passkey providers, or practise recovery decisions in Swiss High German or English.
 
-The poster library at `#library` offers four designs in both languages, including the “This Is Fine” and “Two Buttons” memes. Each poster has an A4 PDF, a portrait PNG for sharing, and a print view. [German poster files](public/posters/de/) · [English poster files](public/posters/en/)
+The poster library at `#library` offers fourteen designs in both languages, including twelve memes. Browse the featured Drake, Expanding Brain and astronaut posters, or expand the full collection. Each poster has an A4 PDF, a portrait PNG for sharing, and a print view. [German poster files](public/posters/de/) · [English poster files](public/posters/en/)
 
 ## Run locally
 
